@@ -1,5 +1,6 @@
 // React
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router"
+import { useEffect, useState } from "react"
 // Components
 import Layout from "./components/layout/Layout"
 import Notfound from "./pages/notfound/Notfound"
@@ -12,6 +13,11 @@ import Index from "./pages/index"
 import * as $ from "jquery";
 // i18n
 import i18n from "./i18n"
+// Context
+import { LanguageContext } from "./context/languageContext"
+// Constants
+import { LOCALSTORAGEKEY } from "./constants/Constants"
+import { useTranslation } from "react-i18next"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,7 +31,29 @@ const router = createBrowserRouter(
 )
 
 export default function App() {
+
+  const [currentLanguage, setCurrentLanguage] = useState("en")
+  const { i18n } = useTranslation()
+  
+  useEffect(() => {
+    const lang = JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) ?? "en";
+    i18n.changeLanguage(lang)
+    setCurrentLanguage(lang)
+  }, [i18n])
+
+  const updateCurrentLanguage = language => {
+    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(language))
+    setCurrentLanguage(language)
+  }
+
+  const appContext = {
+    currentLanguage,
+    updateCurrentLanguage
+  };
+
   return (
-    <RouterProvider router={router} />
+    <LanguageContext.Provider value={appContext}>
+      <RouterProvider router={router} />
+    </LanguageContext.Provider>
   );
 }

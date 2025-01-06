@@ -10,7 +10,7 @@ export default function About() {
   // classname differs depending on the path
   const { pathname } = useLocation()
   const [layoutClassName, setLayoutClassName] = useState("")
-  const [t] = useTranslation("about")
+  const {t} = useTranslation("about")
 
   useEffect(() => {
     if (pathname === "/") {

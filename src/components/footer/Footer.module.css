@@ -16,3 +16,8 @@ p.text {
 p.text > a {
     color: inherit;
 }
+
+.languageBtn {
+    padding-inline: 1.5em;
+    background-color: rgba(155 200 12 / 1);
+}

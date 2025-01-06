@@ -17,7 +17,7 @@ export default function Header() {
   // True by default
   const { pathname } = useLocation();
   const [currentPageIsIndex, setCurrentPageIsIndex] = useState(true);
-  const [t] = useTranslation("header")
+  const {t} = useTranslation("header")
 
   useEffect(() => {
     if (pathname === "/") {

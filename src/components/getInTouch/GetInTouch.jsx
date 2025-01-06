@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 export default function GetInTouch() {
 
-  const [t] = useTranslation("getInTouch")
+  const {t} = useTranslation("getInTouch")
 
   return (
     <section className={styles.infoSection} aria-labelledby="get-in-touch-heading">

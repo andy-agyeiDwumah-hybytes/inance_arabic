@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Slider() {
 
-  const [t] = useTranslation("hero")
+  const {t} = useTranslation("hero")
 
   return (
     <section className="slider_section" aria-labelledby="hero-heading">

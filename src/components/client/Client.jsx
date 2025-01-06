@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Client() {
 
-  const [t] = useTranslation("client")
+  const {t} = useTranslation("client")
 
     // Options for owl carousel
     const options = {

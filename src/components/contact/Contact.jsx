@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Contact() {
 
-  const [t] = useTranslation("contact")
+  const {t} = useTranslation("contact")
 
   return (
     <section

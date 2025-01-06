@@ -18,7 +18,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Feature() {
 
-  const [t] = useTranslation("feature")
+  const {t} = useTranslation("feature")
 
   return (
     <section className="feature_section">

@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Services() {
 
-  const [t] = useTranslation("services")
+  const {t} = useTranslation("services")
 
   return (
       <section className={["layout_padding", styles.section].join(" ")} aria-labelledby="services-heading">

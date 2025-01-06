@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Professional() {
 
-  const [t] = useTranslation("professional")
+  const {t} = useTranslation("professional")
 
   return (
     <section
