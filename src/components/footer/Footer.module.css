@@ -1,0 +1,15 @@
+footer.footer {
+    background-color: var(--darkBlue);
+}
+
+p.text {
+    margin: 0;
+    padding: 25px 0;
+    color: var(--white);
+    text-align: center;
+    border-top: 0.8px solid var(--white);
+}
+
+p.text > a {
+    color: inherit;
+}

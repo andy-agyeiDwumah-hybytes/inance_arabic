@@ -1,0 +1,50 @@
+input.input, textarea.messageBox {
+    width: 100%;
+    border: none;
+    margin-bottom: 25px;
+    padding-left: 25px;
+    background-color: var(--white);
+    outline: none;
+    /* Change below to see text */
+    color: #737272;
+    -webkit-box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+    
+    &::-webkit-input-placeholder,
+    &::-ms-input-placeholder,
+    &::-ms-input-placeholder,
+    &::placeholder {
+        color: currentColor;
+    }
+}
+
+input.input {
+    height: 50px;
+}
+
+textarea.messageBox {
+    padding-top: 3.5em;
+    padding-bottom: 3em;
+}    
+
+button.sendBtn {
+    border: none;
+    display: inline-block;
+    font-family: 'Merriweather Sans', sans-serif;
+    text-transform: uppercase;
+    padding: 10px 55px;
+    background-color: var(--blue);
+    border: 1px solid var(--blue);
+    border-radius: 0;
+    color: var(--white);
+    margin-top: 15px;
+
+    &:hover {
+        background-color: transparent;
+        color: var(--blue);
+    }
+}
+
+.googleMap {
+    height: 360px;
+}
