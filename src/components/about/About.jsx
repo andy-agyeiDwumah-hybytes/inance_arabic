@@ -3,11 +3,14 @@ import { Link, useLocation } from "react-router";
 import { useEffect, useState } from "react";
 // Images
 import aboutImg from "../../assets/about-img.jpg"
+// i18
+import { useTranslation } from "react-i18next";
 
 export default function About() {
   // classname differs depending on the path
   const { pathname } = useLocation()
   const [layoutClassName, setLayoutClassName] = useState("")
+  const [t] = useTranslation("about")
 
   useEffect(() => {
     if (pathname === "/") {
@@ -25,16 +28,11 @@ export default function About() {
         <div className="row about-row">
           <div className="col-lg-5 col-md-6">
             <div className="about-section-detail-box">
-              <h2 className="about-h2" id="about">About us</h2>
+              <h2 className="about-h2" id="about">{t("heading")}</h2>
               <p className="about-para">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or randomisedThere are many variations of
-                passages of Lorem Ipsum available, but the majority have
-                suffered alteration in some form, by injected humour, or
-                randomised
+                {t("paragraph")}
               </p>
-              <Link to="/" className="about-link">Read More</Link>
+              <Link to="/" className="about-link">{t("linkText")}</Link>
             </div>
           </div>
           <div className="col-lg-7 col-md-6">
@@ -42,7 +40,7 @@ export default function About() {
               {/* Provide alt text - important for unit testing / allows it to be accessible */}
               {/* And will be read by Testing library */}
               <img
-                src={aboutImg} alt="Man wearing an apron with tools, pencils, and pens in their pocket"
+                src={aboutImg} alt={t("linkTextAlt")}
                 className="about-img"
               />
             </div>

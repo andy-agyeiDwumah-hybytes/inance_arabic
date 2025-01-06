@@ -7,8 +7,13 @@ import clientTwoImg from "../../assets/client-2.jpg"
 import styles from "./Client.module.css"
 // Owl Carousel
 import ReactOwlCarousel from "react-owl-carousel";
+// i18
+import { useTranslation } from "react-i18next";
 
 export default function Client() {
+
+  const [t] = useTranslation("client")
+
     // Options for owl carousel
     const options = {
       loop: true,
@@ -34,7 +39,7 @@ export default function Client() {
     <section className="client_section" aria-labelledby="clients-heading">
       <div className="container">
         <div className={["heading_container", "heading_center", styles.headingContainer].join(" ")}>
-          <h2 id="clients-heading">What Our Clients Say</h2>
+          <h2 id="clients-heading">{t("heading")}</h2>
         </div>
         <div className="carousel-wrap layout_padding2-top">
             {/* Use of id below is to override styling of prev and next buttons: see index.css */}
@@ -42,28 +47,16 @@ export default function Client() {
             {/* Duplicate to prevent disabled buttons */}
             {/* Buttons become disabled when there are not enough items to cycle */}
             <ClientInfo imgSrc={clientOneImg} name="Jorch morik" numOfStars={5} styles={styles}>
-              chunks as necessary, making this the first true generator on the
-              Internet. It uses a dictionary of over 200 Latin words, combined
-              with a handful of model sentence structures, to generate Lorem
-              Ipsum
+              {t("clientInfoOne")}
             </ClientInfo>
             <ClientInfo imgSrc={clientTwoImg} name="Jorch morik" numOfStars={5} styles={styles}>
-              chunks as necessary, making this the first true generator on the
-              Internet. It uses a dictionary of over 200 Latin words, combined
-              with a handful of model sentence structures, to generate Lorem
-              Ipsum
+              {t("clientInfoTwo")}
             </ClientInfo>
             <ClientInfo imgSrc={clientOneImg} name="Jorch morik" numOfStars={5} styles={styles}>
-              chunks as necessary, making this the first true generator on the
-              Internet. It uses a dictionary of over 200 Latin words, combined
-              with a handful of model sentence structures, to generate Lorem
-              Ipsum
+              {t("clientInfoThree")}
             </ClientInfo>
             <ClientInfo imgSrc={clientTwoImg} name="Jorch morik" numOfStars={5} styles={styles}>
-              chunks as necessary, making this the first true generator on the
-              Internet. It uses a dictionary of over 200 Latin words, combined
-              with a handful of model sentence structures, to generate Lorem
-              Ipsum
+              {t("clientInfoFour")}
             </ClientInfo>
           </ReactOwlCarousel>
         </div>

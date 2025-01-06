@@ -13,8 +13,13 @@ import {
 import Path from "../path/Path";
 // Styles
 import styles from "./Feature.module.css"
+// i18
+import { useTranslation } from "react-i18next";
 
 export default function Feature() {
+
+  const [t] = useTranslation("feature")
+
   return (
     <section className="feature_section">
       <div className="container">
@@ -41,7 +46,7 @@ export default function Feature() {
                 </g>
               </svg>
             </div>
-            <h5 className={["name", styles.name].join(" ")}>Repair</h5>
+            <h5 className={["name", styles.name].join(" ")}>{t("featureOne")}</h5>
           </div>
           <div className={["box", "active", styles.box, styles.active].join(" ")}>
             <div className={["img-box", styles.imgBox].join(" ")}>
@@ -60,7 +65,7 @@ export default function Feature() {
                 </g>
               </svg>
             </div>
-            <h5 className={["name", styles.name].join(" ")}>Improve</h5>
+            <h5 className={["name", styles.name].join(" ")}>{t("featureTwo")}</h5>
           </div>
           <div className={["box", styles.box].join(" ")}>
             <div className={["img-box", styles.imgBox].join(" ")}>
@@ -76,7 +81,7 @@ export default function Feature() {
                 <Path d={pathData8} styles={styles} />
               </svg>
             </div>
-            <h5 className={["name", styles.name].join(" ")}>Maintain</h5>
+            <h5 className={["name", styles.name].join(" ")}>{t("featureThree")}</h5>
           </div>
         </div>
       </div>

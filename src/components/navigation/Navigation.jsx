@@ -1,7 +1,7 @@
 // React
 import { Link, NavLink } from "react-router";
 
-export default function Navigation({ styles }) {
+export default function Navigation({ styles, t }) {
   return (
     <nav
       className={["navbar", "navbar-expand-lg", styles.nav].join(" ")}
@@ -31,7 +31,7 @@ export default function Navigation({ styles }) {
               to="/"
               className={[styles.menuLinks, "nav-link"].join(" ")}
             >
-              Home
+              {t("homeLinkText")}
             </NavLink>
           </li>
           <li className="nav-item">
@@ -39,7 +39,7 @@ export default function Navigation({ styles }) {
               to="/about"
               className={[styles.menuLinks, "nav-link"].join(" ")}
             >
-              About
+              {t("aboutLinkText")}
             </NavLink>
           </li>
           <li className="nav-item">
@@ -47,7 +47,7 @@ export default function Navigation({ styles }) {
               to="/services"
               className={[styles.menuLinks, "nav-link"].join(" ")}
             >
-              Services
+              {t("servicesLinkText")}
             </NavLink>
           </li>
           <li className="nav-item">
@@ -55,7 +55,7 @@ export default function Navigation({ styles }) {
               to="contact"
               className={[styles.menuLinks, "nav-link"].join(" ")}
             >
-              Contact Us
+              {t("contactLinkText")}
             </NavLink>
           </li>
         </menu>

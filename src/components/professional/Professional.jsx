@@ -4,8 +4,13 @@ import styles from "./Professional.module.css"
 import professionalImg from "../../assets/professional-img.png"
 // React
 import { Link } from "react-router";
+// i18
+import { useTranslation } from "react-i18next";
 
 export default function Professional() {
+
+  const [t] = useTranslation("professional")
+
   return (
     <section
       className={[
@@ -21,25 +26,20 @@ export default function Professional() {
             <div className="img-box">
               <img
                 src={professionalImg}
-                alt="Man sitting down pointing towards the heading of this section"
-                className={styles.img} />
+                alt={t("imgAlt")}
+                className={styles.img}
+              />
             </div>
           </div>
           <div className="col-md-6 ">
             <div className="detail-box">
               <h2 className={styles.h2} id="professional-heading">
-                We Provide Professional <br />
-                Home Services.
+                {t("headingStart")} <br />
+                {t("headingEnd")}
               </h2>
-              <p className={styles.para}>
-                randomised words which don&apos;t look even slightly believable.
-                If you are going to use a passage of Lorem Ipsum, you need to be
-                sure there isn&apos;t anything embarrassing hidden in the middle
-                of text. All randomised words which don&apos;t look even
-                slightly
-              </p>
+              <p className={styles.para}>{t("paragraph")}</p>
               <Link to="/" className={styles.link}>
-                Read More
+                {t("linkText")}
               </Link>
             </div>
           </div>

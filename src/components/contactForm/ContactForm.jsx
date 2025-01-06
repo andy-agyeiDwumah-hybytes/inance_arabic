@@ -1,7 +1,7 @@
 // React
 import { useRef, useState } from "react";
 
-export default function ContactForm({ styles }) {
+export default function ContactForm({ styles, t }) {
 
   const formRef = useRef()
 
@@ -36,7 +36,7 @@ export default function ContactForm({ styles }) {
       <div>
         <input
           type="text"
-          placeholder="Name"
+          placeholder={t("namePlaceholder")}
           className={styles.input}
           aria-label="Name"
           id="name"
@@ -51,7 +51,7 @@ export default function ContactForm({ styles }) {
         {/* I would need to override the default behaviour here depending on language */}
         <input
           type="tel"
-          placeholder="Phone Number"
+          placeholder={t("phonePlaceholder")}
           className={styles.input}
           aria-label="Phone Number"
           id="phone-number"
@@ -65,7 +65,7 @@ export default function ContactForm({ styles }) {
       <div>
         <input
           type="email"
-          placeholder="Email"
+          placeholder={t("emailPlaceholder")}
           className={styles.input}
           aria-label="Email"
           id="email"
@@ -79,9 +79,9 @@ export default function ContactForm({ styles }) {
       <div>
         <textarea
           name="message"
+          placeholder={t("messagePlaceholder")}
           id="message"
           className={styles.messageBox}
-          placeholder="Message"
           aria-label="message"
           value={message}
           onChange={e => setMessage(e.target.value)}
@@ -90,7 +90,7 @@ export default function ContactForm({ styles }) {
       </div>
       <div className="d-flex ">
         <button className={styles.sendBtn} type="submit">
-          Send
+          {t("sendButtonText")}
         </button>
       </div>
     </form>

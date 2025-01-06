@@ -4,8 +4,13 @@ import { Link } from "react-router"
 import sliderImg from "../../assets/slider-img.png"
 // Styles
 import styles from "./Slider.module.css"
+// i18
+import { useTranslation } from "react-i18next";
 
 export default function Slider() {
+
+  const [t] = useTranslation("hero")
+
   return (
     <section className="slider_section" aria-labelledby="hero-heading">
       <div className="container">
@@ -13,28 +18,27 @@ export default function Slider() {
           <div className="col-md-6">
             <div className="detail-box">
               <h1 className={styles.h1} id="hero-heading">
-                Repair and <br />
-                Maintenance <br />
-                Services
+                {t("heroTextStart")} <br />
+                {t("heroTextMiddle")} <br />
+                {t("heroTextEnd")}
               </h1>
-              <p className={styles.para}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Qui harum voluptatem adipisci. Quos molestiae saepe dicta
-                nobis pariatur, tempora iusto, ad possimus soluta hic
-                praesentium mollitia consequatur beatae, aspernatur culpa.
-              </p>
+              <p className={styles.para}>{t("paragraph")}</p>
               <Link href="/" className={styles.link}>
-                Contact Us
+                {t("contactUsLinkText")}
               </Link>
             </div>
           </div>
           <div className="col-md-6">
             <div className="img-box">
-              <img src={sliderImg} alt="Man with hands crossed" className={styles.img}/>
+              <img
+                src={sliderImg}
+                alt={t("imgAltText")}
+                className={styles.img}
+              />
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

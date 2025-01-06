@@ -9,13 +9,15 @@ import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 // Components
 import Navigation from "../navigation/Navigation";
 import Slider from "../slider/Slider";
-
+// i18
+import { useTranslation } from "react-i18next";
 
 export default function Header() {
   // Only show Slider component if current page is the index (home page)
   // True by default
   const { pathname } = useLocation();
   const [currentPageIsIndex, setCurrentPageIsIndex] = useState(true);
+  const [t] = useTranslation("header")
 
   useEffect(() => {
     if (pathname === "/") {
@@ -37,21 +39,21 @@ export default function Header() {
                   icon={faPhone}
                   className={[styles.headerIcon, styles.phoneIcon].join(" ")}
                 ></FontAwesomeIcon>
-                &nbsp;Call : +01 123455678990
+                &nbsp;{t("callText")}
               </Link>
               <Link to="/" className={styles.topHeaderLinks}>
                 <FontAwesomeIcon
                   icon={faEnvelope}
                   className={[styles.headerIcon, styles.envelopeIcon].join(" ")}
                 ></FontAwesomeIcon>
-                &nbsp;Email : demo@gmail.com
+                &nbsp;{t("emailText")}
               </Link>
             </div>
           </div>
         </div>
         <div className={styles.bottom}>
           <div className="container-fluid">
-            <Navigation styles={styles} />
+            <Navigation styles={styles} t={t} />
           </div>
         </div>
       </header>
