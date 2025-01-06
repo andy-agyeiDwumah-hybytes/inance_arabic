@@ -1,8 +1,10 @@
 input.input, textarea.messageBox {
     width: 100%;
     border: none;
-    margin-bottom: 25px;
-    padding-left: 25px;
+    /* margin-bottom: 25px; */
+    margin-block-end: 25px;
+    /* padding-left: 25px; */
+    padding-inline-start: 25px;
     background-color: var(--white);
     outline: none;
     /* Change below to see text */
@@ -23,8 +25,10 @@ input.input {
 }
 
 textarea.messageBox {
-    padding-top: 3.5em;
-    padding-bottom: 3em;
+    /* padding-top: 3.5em; */
+    /* padding-bottom: 3em; */
+    padding-block-start: 3.5em;
+    padding-block-end: 3em;
 }    
 
 button.sendBtn {
@@ -32,12 +36,15 @@ button.sendBtn {
     display: inline-block;
     font-family: 'Merriweather Sans', sans-serif;
     text-transform: uppercase;
-    padding: 10px 55px;
+    /* padding: 10px 55px; */
+    padding-block: 10px;
+    padding-inline: 55px;
     background-color: var(--blue);
     border: 1px solid var(--blue);
     border-radius: 0;
     color: var(--white);
-    margin-top: 15px;
+    /* margin-top: 15px; */
+    margin-block-start: 15px;
 
     &:hover {
         background-color: transparent;

@@ -3,11 +3,14 @@ section.section {
 }
 
 div.box {
-    margin-top: 30px;
+    /* margin-top: 30px; */
+    margin-block-start: 30px;
     text-align: center;
     -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.15);
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.15);
-    padding: 25px 15px;
+    /* padding: 25px 15px; */
+    padding-block: 25px;
+    padding-inline: 15px;
     -webkit-transition: all .3s;
     transition: all .3s;
     display: -webkit-box;
@@ -49,7 +52,8 @@ img.img {
 }
 
 div.detailBox {
-    margin-top: 15px;
+    /* margin-top: 15px; */
+    margin-block-start: 15px;
 }
 
 h5.h5 {
@@ -72,14 +76,17 @@ div.btnBox {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    margin-top: 45px;
+    /* margin-top: 45px; */
+    margin-block-start: 45px;
 }
 
 a.btnBoxLink {
     display: inline-block;
     font-family: 'Merriweather Sans', sans-serif;
     text-transform: uppercase;
-    padding: 10px 45px;
+    /* padding: 10px 45px; */
+    padding-block: 10px;
+    padding-inline: 45px;
     background-color: var(--blue);
     border: 1px solid var(--blue);
     border-radius: 0;
