@@ -48,6 +48,7 @@ export default function ContactForm({ styles }) {
         />
       </div>
       <div>
+        {/* I would need to override the default behaviour here depending on language */}
         <input
           type="tel"
           placeholder="Phone Number"
