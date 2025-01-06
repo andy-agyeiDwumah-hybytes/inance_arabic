@@ -10,7 +10,7 @@ Ensure you have:
 ## Getting Started
 
 1. Clone this repository: <br>
-`git clone https://github.com/andy-agyeiDwumah-hybytes/Inance.git`
+`git clone https://github.com/andy-agyeiDwumah-hybytes/inance_arabic.git`
 
 2. Install dependencies: <br>
 `npm install`
