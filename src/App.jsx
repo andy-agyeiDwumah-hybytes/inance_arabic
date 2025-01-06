@@ -37,9 +37,27 @@ export default function App() {
   
   useEffect(() => {
     const lang = JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) ?? "en";
+  
+    const html = document.documentElement
+    if (lang === "en") {
+      html.setAttribute("dir", "ltr")
+    } else if (lang === "ar") {
+      html.setAttribute("dir", "rtl")
+    }
+  
     i18n.changeLanguage(lang)
     setCurrentLanguage(lang)
   }, [i18n])
+
+  useEffect(() => {
+    const html = document.documentElement
+
+   if (currentLanguage === "en") {
+     html.setAttribute("dir", "ltr");
+   } else if (currentLanguage === "ar") {
+     html.setAttribute("dir", "rtl");
+   }
+  }, [currentLanguage])
 
   const updateCurrentLanguage = language => {
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(language))

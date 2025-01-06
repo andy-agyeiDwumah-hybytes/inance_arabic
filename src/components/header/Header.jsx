@@ -2,7 +2,7 @@
 import styles from "./Header.module.css"
 // React
 import { Link, useLocation } from "react-router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -11,13 +11,16 @@ import Navigation from "../navigation/Navigation";
 import Slider from "../slider/Slider";
 // i18
 import { useTranslation } from "react-i18next";
+// Context
+import { LanguageContext } from "../../context/languageContext";
 
 export default function Header() {
   // Only show Slider component if current page is the index (home page)
   // True by default
   const { pathname } = useLocation();
   const [currentPageIsIndex, setCurrentPageIsIndex] = useState(true);
-  const {t} = useTranslation("header")
+  const { t } = useTranslation("header")
+  const { currentLanguage } = useContext(LanguageContext)
 
   useEffect(() => {
     if (pathname === "/") {
@@ -33,21 +36,50 @@ export default function Header() {
         <div className={styles.top}>
           <div className="container-fluid">
             <div className={["contact_nav", styles.contactNav].join(" ")}>
-              {/* Dynamically change icons around based on language */}
-              <Link to="/" className={styles.topHeaderLinks}>
-                <FontAwesomeIcon
-                  icon={faPhone}
-                  className={[styles.headerIcon, styles.phoneIcon].join(" ")}
-                ></FontAwesomeIcon>
-                &nbsp;{t("callText")}
-              </Link>
-              <Link to="/" className={styles.topHeaderLinks}>
-                <FontAwesomeIcon
-                  icon={faEnvelope}
-                  className={[styles.headerIcon, styles.envelopeIcon].join(" ")}
-                ></FontAwesomeIcon>
-                &nbsp;{t("emailText")}
-              </Link>
+              {/* Dynamically change icon positon around based on language */}
+              {currentLanguage === "en" ? (
+                <>
+                  <Link to="/" className={styles.topHeaderLinks}>
+                    <FontAwesomeIcon
+                      icon={faPhone}
+                      className={[styles.headerIcon, styles.phoneIcon].join(
+                        " "
+                      )}
+                    ></FontAwesomeIcon>
+                    &nbsp;{t("callText")}
+                  </Link>
+                  <Link to="/" className={styles.topHeaderLinks}>
+                    <FontAwesomeIcon
+                      icon={faEnvelope}
+                      className={[styles.headerIcon, styles.envelopeIcon].join(
+                        " "
+                      )}
+                    ></FontAwesomeIcon>
+                    &nbsp;{t("emailText")}
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/" className={styles.topHeaderLinks}>
+                    {t("callText")}&nbsp;
+                    <FontAwesomeIcon
+                      icon={faPhone}
+                      className={[styles.headerIcon, styles.phoneIcon].join(
+                        " "
+                      )}
+                    ></FontAwesomeIcon>
+                  </Link>
+                    <Link to="/" className={styles.topHeaderLinks}>
+                    {t("emailText")}&nbsp;
+                    <FontAwesomeIcon
+                      icon={faEnvelope}
+                      className={[styles.headerIcon, styles.envelopeIcon].join(
+                        " "
+                      )}
+                    ></FontAwesomeIcon>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
