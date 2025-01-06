@@ -10,6 +10,8 @@ import Contact from "./components/contact/Contact"
 import Index from "./pages/index"
 // Make JQuery available to entire Project
 import * as $ from "jquery";
+// i18n
+import i18n from "./i18n"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
