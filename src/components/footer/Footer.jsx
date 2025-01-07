@@ -1,24 +1,24 @@
-// Styles
+// React
 import { useContext } from "react"
+// Styles
 import styles from "./Footer.module.css"
 // i18
 import { useTranslation } from "react-i18next"
 // React
 import { TextDirectionContext } from "../../context/textDirectionContext";
-// Components
-import Button from "../button/Button"
+// Languages
+import { languages } from "../../languages/languageCodes";
 
 export default function Footer() {
   const { t, i18n } = useTranslation("footer")
-  const { languageOptions, updateLanguageOptions } = useContext(TextDirectionContext);
-  const { textDirection } = languageOptions || {}
+  const { updateLanguageOptions } = useContext(TextDirectionContext);
 
   const date = new Date()
   const year = date.getFullYear()
 
-  const handleClick = (language, textDirection) => {
-    i18n.changeLanguage(language)
-    updateLanguageOptions(language, textDirection);
+  const handleChange = (languageCode, writingMode) => {
+    i18n.changeLanguage(languageCode)
+    updateLanguageOptions(languageCode, writingMode);
   }
 
   return (
@@ -35,24 +35,39 @@ export default function Footer() {
           </div>
         </div>
         <div className="row py-2">
-          <div className="col-md-12 text-center">
-            {textDirection === "rtl" && (
-              <Button
-                languageText="EN"
-                handleClick={() => handleClick("en", "ltr")}
-                styles={styles}
-              />
-            )}
-            {textDirection === "ltr" && (
-              <Button
-                languageText="AR"
-                handleClick={() => handleClick("ar", "rtl")}
-                styles={styles}
-              />
-            )}
+          <div className="col-md-12 text-end">
+            <label
+              htmlFor="language-select"
+              className={styles.languageSelectText}
+            >
+              {t("changeLanguageText")}
+            </label>
+            <select
+              name="language"
+              id="language-select"
+              className={styles.select}
+              onChange={(e) => {
+                const selectedOption = languages.find(
+                  (lang) => lang.languageCode === e.target.value
+                );
+
+                handleChange(
+                  selectedOption.languageCode,
+                  selectedOption.writingMode
+                );
+              }}
+            >
+              {languages.map((val) => {
+                return (
+                  <option key={val.language} value={val.languageCode}>
+                    {val.languageCode}
+                  </option>
+                );
+              })}
+            </select>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }
