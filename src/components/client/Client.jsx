@@ -42,8 +42,9 @@ export default function Client() {
           <h2 id="clients-heading">{t("heading")}</h2>
         </div>
         <div className="carousel-wrap layout_padding2-top">
-            {/* Use of id below is to override styling of prev and next buttons: see index.css */}
-          <ReactOwlCarousel className="owl-carousel" id="clientCarousel" {...options} >
+          {/* Use of id below is to override styling of prev and next buttons: see index.css */}
+          {/* Set fixed dir to prevent any bugs */}
+          <ReactOwlCarousel className="owl-carousel" id="clientCarousel" {...options} dir="ltr">
             {/* Duplicate to prevent disabled buttons */}
             {/* Buttons become disabled when there are not enough items to cycle */}
             <ClientInfo imgSrc={clientOneImg} name="Jorch morik" numOfStars={5} styles={styles}>

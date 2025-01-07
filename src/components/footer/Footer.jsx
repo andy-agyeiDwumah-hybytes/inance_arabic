@@ -4,20 +4,21 @@ import styles from "./Footer.module.css"
 // i18
 import { useTranslation } from "react-i18next"
 // React
-import { LanguageContext } from "../../context/languageContext"
+import { TextDirectionContext } from "../../context/textDirectionContext";
 // Components
 import Button from "../button/Button"
 
 export default function Footer() {
   const { t, i18n } = useTranslation("footer")
-  const {currentLanguage, updateCurrentLanguage} = useContext(LanguageContext)
+  const { languageOptions, updateLanguageOptions } = useContext(TextDirectionContext);
+  const { textDirection } = languageOptions || {}
 
   const date = new Date()
   const year = date.getFullYear()
 
-  const handleClick = language => {
+  const handleClick = (language, textDirection) => {
     i18n.changeLanguage(language)
-    updateCurrentLanguage(language)
+    updateLanguageOptions(language, textDirection);
   }
 
   return (
@@ -35,17 +36,17 @@ export default function Footer() {
         </div>
         <div className="row py-2">
           <div className="col-md-12 text-center">
-            {currentLanguage === "ar" && (
+            {textDirection === "rtl" && (
               <Button
                 languageText="EN"
-                handleClick={() => handleClick("en")}
+                handleClick={() => handleClick("en", "ltr")}
                 styles={styles}
               />
             )}
-            {currentLanguage === "en" && (
+            {textDirection === "ltr" && (
               <Button
                 languageText="AR"
-                handleClick={() => handleClick("ar")}
+                handleClick={() => handleClick("ar", "rtl")}
                 styles={styles}
               />
             )}

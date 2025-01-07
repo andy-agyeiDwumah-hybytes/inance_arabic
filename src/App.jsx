@@ -14,7 +14,7 @@ import * as $ from "jquery";
 // i18n
 import i18n from "./i18n"
 // Context
-import { LanguageContext } from "./context/languageContext"
+import { TextDirectionContext } from "./context/textDirectionContext"
 // Constants
 import { LOCALSTORAGEKEY } from "./constants/Constants"
 import { useTranslation } from "react-i18next"
@@ -30,48 +30,54 @@ const router = createBrowserRouter(
   )
 )
 
+ const englishOptions = {
+   language: "en",
+   textDirection: "ltr",
+ };
+
 export default function App() {
 
-  const [currentLanguage, setCurrentLanguage] = useState("en")
+  const [languageOptions, setLanguageOptions] = useState(englishOptions)
   const { i18n } = useTranslation()
   
   useEffect(() => {
-    const lang = JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) ?? "en";
+    const langOptions = JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) ?? englishOptions;
   
     const html = document.documentElement
-    if (lang === "en") {
-      html.setAttribute("dir", "ltr")
-    } else if (lang === "ar") {
-      html.setAttribute("dir", "rtl")
+    if (langOptions["textDirection"] === "ltr") {
+      html.setAttribute("dir", "ltr");
+    } else if (langOptions["textDirection"] === "rtl") {
+      html.setAttribute("dir", "rtl");
     }
   
-    i18n.changeLanguage(lang)
-    setCurrentLanguage(lang)
+    i18n.changeLanguage(langOptions["language"])
+    setLanguageOptions(langOptions)
   }, [i18n])
 
   useEffect(() => {
-    const html = document.documentElement
+    const html = document.documentElement;
 
-   if (currentLanguage === "en") {
-     html.setAttribute("dir", "ltr");
-   } else if (currentLanguage === "ar") {
-     html.setAttribute("dir", "rtl");
-   }
-  }, [currentLanguage])
+    if (languageOptions?.["textDirection"] === "ltr") {
+      html.setAttribute("dir", "ltr");
+    } else if (languageOptions?.["textDirection"] === "rtl") {
+      html.setAttribute("dir", "rtl");
+    }
+  }, [languageOptions]);
 
-  const updateCurrentLanguage = language => {
-    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(language))
-    setCurrentLanguage(language)
+  const updateLanguageOptions = (language, textDirection) => {
+    const updatedOptions = { language: language, textDirection: textDirection }
+    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(updatedOptions))
+    setLanguageOptions(updatedOptions)
   }
 
   const appContext = {
-    currentLanguage,
-    updateCurrentLanguage
+    languageOptions,
+    updateLanguageOptions,
   };
 
   return (
-    <LanguageContext.Provider value={appContext}>
+    <TextDirectionContext.Provider value={appContext}>
       <RouterProvider router={router} />
-    </LanguageContext.Provider>
+    </TextDirectionContext.Provider>
   );
 }

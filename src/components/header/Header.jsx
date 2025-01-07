@@ -12,7 +12,7 @@ import Slider from "../slider/Slider";
 // i18
 import { useTranslation } from "react-i18next";
 // Context
-import { LanguageContext } from "../../context/languageContext";
+import { TextDirectionContext } from "../../context/textDirectionContext";
 
 export default function Header() {
   // Only show Slider component if current page is the index (home page)
@@ -20,7 +20,7 @@ export default function Header() {
   const { pathname } = useLocation();
   const [currentPageIsIndex, setCurrentPageIsIndex] = useState(true);
   const { t } = useTranslation("header")
-  const { currentLanguage } = useContext(LanguageContext)
+  const { textDirection } = useContext(TextDirectionContext);
 
   useEffect(() => {
     if (pathname === "/") {
@@ -36,8 +36,8 @@ export default function Header() {
         <div className={styles.top}>
           <div className="container-fluid">
             <div className={["contact_nav", styles.contactNav].join(" ")}>
-              {/* Dynamically change icon positon around based on language */}
-              {currentLanguage === "en" ? (
+              {/* Dynamically change icon positon around based on text direction */}
+              {textDirection === "ltr" ? (
                 <>
                   <Link to="/" className={styles.topHeaderLinks}>
                     <FontAwesomeIcon
@@ -69,7 +69,7 @@ export default function Header() {
                       )}
                     ></FontAwesomeIcon>
                   </Link>
-                    <Link to="/" className={styles.topHeaderLinks}>
+                  <Link to="/" className={styles.topHeaderLinks}>
                     {t("emailText")}&nbsp;
                     <FontAwesomeIcon
                       icon={faEnvelope}

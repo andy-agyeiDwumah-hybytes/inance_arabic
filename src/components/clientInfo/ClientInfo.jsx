@@ -1,8 +1,14 @@
 // Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
+// React
+import { useContext } from "react";
+// Context
+import { TextDirectionContext } from "../../context/textDirectionContext";
 
 export default function ClientInfo({ imgSrc, name, children, numOfStars, styles }) {
+  const { languageOptions } = useContext(TextDirectionContext)
+  const { textDirection } = languageOptions || {};
   const fontAwesomeIcons = [];
 
   // Generate number of stars for client review
@@ -11,7 +17,7 @@ export default function ClientInfo({ imgSrc, name, children, numOfStars, styles 
   }
 
   return (
-    <div className="item">
+    <div className="item" dir={textDirection === "ltr" ? "ltr" : "rtl"}>
       <div className={["box", styles.box].join(" ")}>
         <div className={["client_id", styles.clientId].join(" ")}>
           <div className={["img-box", styles.imgBox].join(" ")}>

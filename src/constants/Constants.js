@@ -1,1 +1,1 @@
-export const LOCALSTORAGEKEY = "currentLanguage"; 
+export const LOCALSTORAGEKEY = "currentTextDirection"; 
