@@ -11,7 +11,9 @@ import { languages } from "../../languages/languageCodes"
 
 export default function Footer() {
   const { t, i18n } = useTranslation("footer")
-  const { updateLanguageOptions } = useContext(LanguageContext)
+  const { languageOptions, updateLanguageOptions } = useContext(LanguageContext)
+  // Current language selected
+  const { language } = languageOptions
 
   const date = new Date()
   const year = date.getFullYear()
@@ -58,12 +60,18 @@ export default function Footer() {
                 )
               }}
             >
+              {/* Let default language selected be user's choice */}
+              {/* This allows user to switch between languages when page refreshes */}
               {languages.map(val => {
-                return (
+                return val.languageCode === language ? (
+                  <option key={val.language} value={val.languageCode} selected>
+                    {val.languageCode}
+                  </option>
+                ) : (
                   <option key={val.language} value={val.languageCode}>
                     {val.languageCode}
                   </option>
-                )
+                );
               })}
             </select>
           </div>
