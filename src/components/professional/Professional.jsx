@@ -4,12 +4,17 @@ import styles from "./Professional.module.css"
 import professionalImg from "../../assets/professional-img.png"
 // React
 import { Link } from "react-router";
+import { useContext } from "react";
 // i18
 import { useTranslation } from "react-i18next";
+// Context
+import { TextDirectionContext } from "../../context/textDirectionContext";
 
 export default function Professional() {
 
-  const {t} = useTranslation("professional")
+  const { t } = useTranslation("professional")
+  const { languageOptions } = useContext(TextDirectionContext)
+  const { textDirection } = languageOptions 
 
   return (
     <section
@@ -27,7 +32,8 @@ export default function Professional() {
               <img
                 src={professionalImg}
                 alt={t("imgAlt")}
-                className={styles.img}
+                // Flip image based on writing mode
+                className={[styles.img, textDirection === "rtl" && styles.imgRtl].join(" ")}
               />
             </div>
           </div>

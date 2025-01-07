@@ -8,8 +8,12 @@ div.row {
     align-items: center;
 }
 
-img.img {
+.img {
     width: 100%;
+}
+
+.imgRtl {
+    transform: scaleX(-1);
 }
 
 h2.h2 {
