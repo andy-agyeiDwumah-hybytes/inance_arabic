@@ -96,3 +96,15 @@ a.menuLinks {
     vertical-align: baseline;
     font-size: 0.8rem;
 }
+
+.topHeaderLinks {
+    display: flex;
+}
+
+.topHeaderLinks > div:first-child {
+    margin-inline-end: 0.2em;
+}
+
+.topHeaderLinks > div:last-child {
+    margin-inline-end: 0.2em;
+}

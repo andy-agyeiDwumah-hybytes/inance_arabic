@@ -57,9 +57,9 @@ export default function App() {
   useEffect(() => {
     const html = document.documentElement;
 
-    if (languageOptions?.["textDirection"] === "ltr") {
+    if (languageOptions["textDirection"] === "ltr") {
       html.setAttribute("dir", "ltr");
-    } else if (languageOptions?.["textDirection"] === "rtl") {
+    } else if (languageOptions["textDirection"] === "rtl") {
       html.setAttribute("dir", "rtl");
     }
   }, [languageOptions]);
