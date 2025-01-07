@@ -1,14 +1,8 @@
 // Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
-// React
-import { useContext } from "react";
-// Context
-import { TextDirectionContext } from "../../context/textDirectionContext";
 
-export default function ClientInfo({ imgSrc, name, children, numOfStars, styles }) {
-  const { languageOptions } = useContext(TextDirectionContext)
-  const { textDirection } = languageOptions || {};
+export default function ClientInfo({ imgSrc, name, children, numOfStars, styles, textDirection }) {
   const fontAwesomeIcons = [];
 
   // Generate number of stars for client review
