@@ -24,7 +24,7 @@ import HeroAr from "./locales/ar/hero.json";
 import ProfessionalAr from "./locales/ar/professional.json";
 import ServicesAr from "./locales/ar/services.json";
 
-// the translations
+// Translations
 const resources = {
   en: {
     about: AboutEn,
@@ -53,10 +53,10 @@ const resources = {
 };
 
 i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(initReactI18next) // Passes i18n down to react-i18next
   .init({
     resources,
-    lng: "en", // language to use,
+    lng: "en", // Language to use,
     fallbackLng: "en",
 
     interpolation: {

@@ -31,8 +31,7 @@ export default function ContactForm({ styles, t }) {
   }
 
   return (
-    // By default forms do not get this role
-    <form role="form" onSubmit={handleSubmit} ref={formRef}>
+    <form aria-label="Contact" onSubmit={handleSubmit} ref={formRef}>
       <div>
         <input
           type="text"

@@ -3,18 +3,18 @@ import styles from "./Professional.module.css"
 // Images
 import professionalImg from "../../assets/professional-img.png"
 // React
-import { Link } from "react-router";
-import { useContext } from "react";
+import { Link } from "react-router"
+import { useContext } from "react"
 // i18
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 // Context
-import { TextDirectionContext } from "../../context/textDirectionContext";
+import { LanguageContext } from "../../context/languageContext"
 
 export default function Professional() {
 
   const { t } = useTranslation("professional")
-  const { languageOptions } = useContext(TextDirectionContext)
-  const { textDirection } = languageOptions 
+  const { languageOptions } = useContext(LanguageContext)
+  const { textDirection } = languageOptions
 
   return (
     <section
@@ -52,5 +52,5 @@ export default function Professional() {
         </div>
       </div>
     </section>
-  );
+  )
 }

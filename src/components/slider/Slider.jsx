@@ -5,7 +5,7 @@ import sliderImg from "../../assets/slider-img.png"
 // Styles
 import styles from "./Slider.module.css"
 // i18
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 export default function Slider() {
 
@@ -40,5 +40,5 @@ export default function Slider() {
         </div>
       </div>
     </section>
-  );
+  )
 }

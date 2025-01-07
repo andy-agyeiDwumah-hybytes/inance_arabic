@@ -4,21 +4,21 @@ import { useContext } from "react"
 import styles from "./Footer.module.css"
 // i18
 import { useTranslation } from "react-i18next"
-// React
-import { TextDirectionContext } from "../../context/textDirectionContext";
+// Context
+import { LanguageContext } from "../../context/languageContext"
 // Languages
-import { languages } from "../../languages/languageCodes";
+import { languages } from "../../languages/languageCodes"
 
 export default function Footer() {
   const { t, i18n } = useTranslation("footer")
-  const { updateLanguageOptions } = useContext(TextDirectionContext);
+  const { updateLanguageOptions } = useContext(LanguageContext)
 
   const date = new Date()
   const year = date.getFullYear()
 
   const handleChange = (languageCode, writingMode) => {
     i18n.changeLanguage(languageCode)
-    updateLanguageOptions(languageCode, writingMode);
+    updateLanguageOptions(languageCode, writingMode)
   }
 
   return (
@@ -46,28 +46,29 @@ export default function Footer() {
               name="language"
               id="language-select"
               className={styles.select}
-              onChange={(e) => {
+              onChange={e => {
+                // Find language chosen by user
                 const selectedOption = languages.find(
-                  (lang) => lang.languageCode === e.target.value
-                );
+                  lang => lang.languageCode === e.target.value
+                )
 
                 handleChange(
                   selectedOption.languageCode,
                   selectedOption.writingMode
-                );
+                )
               }}
             >
-              {languages.map((val) => {
+              {languages.map(val => {
                 return (
                   <option key={val.language} value={val.languageCode}>
                     {val.languageCode}
                   </option>
-                );
+                )
               })}
             </select>
           </div>
         </div>
       </div>
     </footer>
-  );
+  )
 }

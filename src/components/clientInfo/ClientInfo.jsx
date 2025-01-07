@@ -11,6 +11,7 @@ export default function ClientInfo({ imgSrc, name, children, numOfStars, styles,
   }
 
   return (
+    // Update text direction based on language
     <div className="item" dir={textDirection === "ltr" ? "ltr" : "rtl"}>
       <div className={["box", styles.box].join(" ")}>
         <div className={["client_id", styles.clientId].join(" ")}>

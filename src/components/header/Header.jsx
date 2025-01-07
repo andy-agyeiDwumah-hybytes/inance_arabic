@@ -33,7 +33,6 @@ export default function Header() {
         <div className={styles.top}>
           <div className="container-fluid">
             <div className={["contact_nav", styles.contactNav].join(" ")}>
-              {/* Dynamically change icon positon around based on text direction */}
               <Link
                 to="/"
                 className={styles.topHeaderLinks}

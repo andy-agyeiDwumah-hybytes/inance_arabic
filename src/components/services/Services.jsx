@@ -1,5 +1,5 @@
 // Components
-import Service from "../service/Service";
+import Service from "../service/Service"
 // Images
 import maintenanceImg from "../../assets/s1.png"
 import electricalImg from "../../assets/s2.png"
@@ -7,9 +7,9 @@ import plumbingImg from "../../assets/s3.png"
 // Styles
 import styles from "./Services.module.css"
 // React
-import { Link } from "react-router";
+import { Link } from "react-router"
 // i18
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 export default function Services() {
 
@@ -37,5 +37,5 @@ export default function Services() {
         </div>
       </div>
     </section>
-  );
+  )
 }

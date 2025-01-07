@@ -1,5 +1,5 @@
 // React
-import { Link, NavLink } from "react-router";
+import { Link, NavLink } from "react-router"
 
 export default function Navigation({ styles, t }) {
   return (
@@ -61,5 +61,5 @@ export default function Navigation({ styles, t }) {
         </menu>
       </div>
     </nav>
-  );
+  )
 }

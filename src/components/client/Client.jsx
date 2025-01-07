@@ -1,24 +1,24 @@
 // Components
-import ClientInfo from "../clientInfo/ClientInfo";
+import ClientInfo from "../clientInfo/ClientInfo"
 // Images
 import clientOneImg from "../../assets/client-1.jpg"
 import clientTwoImg from "../../assets/client-2.jpg"
 // Styles
 import styles from "./Client.module.css"
 // Owl Carousel
-import ReactOwlCarousel from "react-owl-carousel";
+import ReactOwlCarousel from "react-owl-carousel"
 // i18
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 // React
-import { useContext } from "react";
+import { useContext } from "react"
 // Context
-import { TextDirectionContext } from "../../context/textDirectionContext";
+import { LanguageContext } from "../../context/languageContext"
 
 export default function Client() {
 
   const { t } = useTranslation("client")
-  const { languageOptions } = useContext(TextDirectionContext)
-  const { textDirection } = languageOptions || {}
+  const { languageOptions } = useContext(LanguageContext)
+  const { textDirection } = languageOptions
 
     // Options for owl carousel
     const options = {
@@ -39,7 +39,7 @@ export default function Client() {
         768: { items: 2 },
         1000: { items: 2 },
       },
-    };
+    }
 
   return (
     <section className="client_section" aria-labelledby="clients-heading">
@@ -107,5 +107,5 @@ export default function Client() {
         </div>
       </div>
     </section>
-  );
+  )
 }

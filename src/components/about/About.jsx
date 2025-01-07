@@ -1,16 +1,16 @@
 // React
-import { Link, useLocation } from "react-router";
-import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router"
+import { useEffect, useState } from "react"
 // Images
 import aboutImg from "../../assets/about-img.jpg"
 // i18
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 export default function About() {
   // classname differs depending on the path
   const { pathname } = useLocation()
   const [layoutClassName, setLayoutClassName] = useState("")
-  const {t} = useTranslation("about")
+  const { t } = useTranslation("about")
 
   useEffect(() => {
     if (pathname === "/") {
@@ -23,16 +23,21 @@ export default function About() {
   }, [pathname])
 
   return (
-    <section className={["about_section", layoutClassName].join(" ")} aria-labelledby="about">
+    <section
+      className={["about_section", layoutClassName].join(" ")}
+      aria-labelledby="about"
+    >
       <div className="container">
         <div className="row about-row">
           <div className="col-lg-5 col-md-6">
             <div className="about-section-detail-box">
-              <h2 className="about-h2" id="about">{t("heading")}</h2>
-              <p className="about-para">
-                {t("paragraph")}
-              </p>
-              <Link to="/" className="about-link">{t("linkText")}</Link>
+              <h2 className="about-h2" id="about">
+                {t("heading")}
+              </h2>
+              <p className="about-para">{t("paragraph")}</p>
+              <Link to="/" className="about-link">
+                {t("linkText")}
+              </Link>
             </div>
           </div>
           <div className="col-lg-7 col-md-6">
@@ -40,7 +45,8 @@ export default function About() {
               {/* Provide alt text - important for unit testing / allows it to be accessible */}
               {/* And will be read by Testing library */}
               <img
-                src={aboutImg} alt={t("linkTextAlt")}
+                src={aboutImg}
+                alt={t("linkTextAlt")}
                 className="about-img"
               />
             </div>
@@ -48,5 +54,5 @@ export default function About() {
         </div>
       </div>
     </section>
-  );
+  )
 }
