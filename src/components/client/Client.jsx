@@ -15,7 +15,6 @@ import { useContext } from "react"
 import { LanguageContext } from "../../context/languageContext"
 
 export default function Client() {
-
   const { t } = useTranslation("client")
   const { languageOptions } = useContext(LanguageContext)
   const { textDirection } = languageOptions

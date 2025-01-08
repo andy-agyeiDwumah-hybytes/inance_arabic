@@ -11,10 +11,9 @@ import { useTranslation } from "react-i18next"
 import { LanguageContext } from "../../context/languageContext"
 
 export default function Professional() {
-
   const { t } = useTranslation("professional")
   const { languageOptions } = useContext(LanguageContext)
-  const { textDirection } = languageOptions
+  const { language, textDirection } = languageOptions
 
   return (
     <section
@@ -44,7 +43,7 @@ export default function Professional() {
                 {t("headingEnd")}
               </h2>
               <p className={styles.para}>{t("paragraph")}</p>
-              <Link to="/" className={styles.link}>
+              <Link to={`/${language}`} className={styles.link}>
                 {t("linkText")}
               </Link>
             </div>

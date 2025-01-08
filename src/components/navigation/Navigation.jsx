@@ -1,13 +1,20 @@
 // React
+import { useContext } from "react"
 import { Link, NavLink } from "react-router"
+// Context
+import { LanguageContext } from "../../context/languageContext"
 
 export default function Navigation({ styles, t }) {
+  const { languageOptions } = useContext(LanguageContext)
+  // Pass language code to links
+  const { language } = languageOptions
+
   return (
     <nav
       className={["navbar", "navbar-expand-lg", styles.nav].join(" ")}
       aria-label="Primary"
     >
-      <Link to="/" className="navbar-brand">
+      <Link to={`/${language}`} className="navbar-brand">
         <span className={styles.inanceText}>Inance</span>
       </Link>
       <button
@@ -28,15 +35,17 @@ export default function Navigation({ styles, t }) {
         <menu className={["navbar-nav", styles.navbarNav].join(" ")}>
           <li className="nav-item">
             <NavLink
-              to="/"
+              to={`/${language}`}
               className={[styles.menuLinks, "nav-link"].join(" ")}
+              // Match only when the URL is exactly the same as link
+              end
             >
               {t("homeLinkText")}
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink
-              to="/about"
+              to="about"
               className={[styles.menuLinks, "nav-link"].join(" ")}
             >
               {t("aboutLinkText")}
@@ -44,7 +53,7 @@ export default function Navigation({ styles, t }) {
           </li>
           <li className="nav-item">
             <NavLink
-              to="/services"
+              to="services"
               className={[styles.menuLinks, "nav-link"].join(" ")}
             >
               {t("servicesLinkText")}

@@ -1,14 +1,23 @@
 // Components
-import ContactForm from "../contactForm/ContactForm";
-import GoogleMap from "../googleMap/GoogleMap";
+import ContactForm from "../contactForm/ContactForm"
+import GoogleMap from "../googleMap/GoogleMap"
 // Styles
 import styles from "./Contact.module.css"
 // i18
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
+// React
+import { useLocation, useParams } from "react-router"
+// Hooks
+import useLanguageChange from "../../hooks/useLanguageChange"
 
 export default function Contact() {
+  const { t } = useTranslation("contact")
+  // Add default value to avoid error when shown
+  // as a component rather than page
+  let { langCode = "" } = useParams()
+  const { pathname } = useLocation()
 
-  const {t} = useTranslation("contact")
+  useLanguageChange(langCode, pathname, `/${langCode}/contact`)
 
   return (
     <section
@@ -29,5 +38,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  );
+  )
 }

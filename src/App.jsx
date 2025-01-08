@@ -14,19 +14,20 @@ import Contact from "./components/contact/Contact"
 // Pages
 import Notfound from "./pages/notfound/Notfound"
 import Index from "./pages/index"
-// Make JQuery available to entire Project
+// Make JQuery available to entire project
 import * as $ from "jquery"
 // i18n
 import i18n from "./i18n"
-import { useTranslation } from "react-i18next"
 // Context
 import { LanguageContext } from "./context/languageContext"
 // Constants
-import { LOCALSTORAGEKEY } from "./constants/Constants"
+import { LOCALSTORAGEKEY, ENGLISHLANGUAGEOPTIONS } from "./constants/Constants"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />} errorElement={<Notfound />}>
+    // Language code is optional
+    // See 'Index.jsx' and custom hook for more details
+    <Route path="/:langCode?" element={<Layout />} errorElement={<Notfound />}>
       <Route index element={<Index />} />
       <Route path="about" element={<About />} />
       <Route path="services" element={<Services />} />
@@ -35,39 +36,14 @@ const router = createBrowserRouter(
   )
 )
 
-const englishLanguageOptions = {
-  language: "en",
-  textDirection: "ltr",
-}
-
 export default function App() {
+  // Set default to english language
   const [languageOptions, setLanguageOptions] = useState(
-    englishLanguageOptions
+    ENGLISHLANGUAGEOPTIONS
   )
-  // Get language updater function
-  const { i18n } = useTranslation()
 
+  // Updates text direction for website when user changes language
   useEffect(() => {
-    // Default to english language options if language options not set in local storage
-    const langOptions =
-      JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) ??
-      englishLanguageOptions
-
-    const html = document.documentElement
-    // Check language text direction and update HTML 'dir' attribute
-    if (langOptions["textDirection"] === "ltr") {
-      html.setAttribute("dir", "ltr")
-    } else if (langOptions["textDirection"] === "rtl") {
-      html.setAttribute("dir", "rtl")
-    }
-
-    // Update language
-    i18n.changeLanguage(langOptions["language"])
-    setLanguageOptions(langOptions)
-  }, [i18n])
-
-  useEffect(() => {
-    // Updates text direction when user changes language
     const html = document.documentElement
 
     if (languageOptions["textDirection"] === "ltr") {
@@ -81,6 +57,7 @@ export default function App() {
     // Store new language options in local storage
     const updatedOptions = { language: language, textDirection: textDirection }
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(updatedOptions))
+    // Update current language options
     setLanguageOptions(updatedOptions)
   }
 

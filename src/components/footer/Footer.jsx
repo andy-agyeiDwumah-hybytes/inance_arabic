@@ -1,5 +1,6 @@
 // React
 import { useContext } from "react"
+import { useLocation, useNavigate, useParams } from "react-router"
 // Styles
 import styles from "./Footer.module.css"
 // i18
@@ -11,9 +12,12 @@ import { languages } from "../../languages/languageCodes"
 
 export default function Footer() {
   const { t, i18n } = useTranslation("footer")
-  const { languageOptions, updateLanguageOptions } = useContext(LanguageContext)
-  // Current language selected
+  const { languageOptions, updateLanguageOptions } =
+    useContext(LanguageContext)
   const { language } = languageOptions
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
+  let { langCode } = useParams()
 
   const date = new Date()
   const year = date.getFullYear()
@@ -21,6 +25,9 @@ export default function Footer() {
   const handleChange = (languageCode, writingMode) => {
     i18n.changeLanguage(languageCode)
     updateLanguageOptions(languageCode, writingMode)
+    // Replace the existing language code in URL with code selected
+    // in select dropdown
+    navigate(pathname.replace(langCode, languageCode))
   }
 
   return (
@@ -31,7 +38,6 @@ export default function Footer() {
             <p className={styles.text}>
               &copy; <span className={styles.displayDateYear}>{year}</span>{" "}
               {t("copyrightText")}{" "}
-              {/* Use of standard a link here is because it points to a page outside the app */}
               <a href="https://html.design/">{t("freeHtmlTemplatesText")}</a>
             </p>
           </div>
@@ -48,6 +54,7 @@ export default function Footer() {
               name="language"
               id="language-select"
               className={styles.select}
+              value={language}
               onChange={e => {
                 // Find language chosen by user
                 const selectedOption = languages.find(
@@ -60,18 +67,13 @@ export default function Footer() {
                 )
               }}
             >
-              {/* Let default language selected be user's choice */}
-              {/* This allows user to switch between languages when page refreshes */}
+              {/* Show all languages supported by website */}
               {languages.map(val => {
-                return val.languageCode === language ? (
-                  <option key={val.language} value={val.languageCode} selected>
-                    {val.languageCode}
-                  </option>
-                ) : (
+                return (
                   <option key={val.language} value={val.languageCode}>
                     {val.languageCode}
                   </option>
-                );
+                )
               })}
             </select>
           </div>

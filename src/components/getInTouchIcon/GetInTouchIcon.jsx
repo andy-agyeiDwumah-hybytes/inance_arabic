@@ -1,14 +1,14 @@
 // Font awesome
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // React
-import { Link } from "react-router";
+import { Link } from "react-router"
 
-export default function GetInTouchIcon({ icon, styles }) {
+export default function GetInTouchIcon({ icon, styles, languageCode }) {
   return (
     <div>
-      <Link to="/" className={styles.iconLink}>
+      <Link to={`/${languageCode}`} className={styles.iconLink}>
         <FontAwesomeIcon icon={icon} className={styles.icon} />
       </Link>
     </div>
-  );
+  )
 }

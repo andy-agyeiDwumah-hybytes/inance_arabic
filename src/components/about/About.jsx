@@ -1,26 +1,37 @@
 // React
-import { Link, useLocation } from "react-router"
-import { useEffect, useState } from "react"
+import { Link, useLocation, useParams } from "react-router"
+import { useContext, useEffect, useState } from "react"
 // Images
 import aboutImg from "../../assets/about-img.jpg"
 // i18
 import { useTranslation } from "react-i18next"
+// Context
+import { LanguageContext } from "../../context/languageContext"
+// Hooks
+import useLanguageChange from "../../hooks/useLanguageChange"
 
 export default function About() {
-  // classname differs depending on the path
+  // Classname differs depending on the path
   const { pathname } = useLocation()
+  const { languageOptions } = useContext(LanguageContext)
+  const { language } = languageOptions
   const [layoutClassName, setLayoutClassName] = useState("")
   const { t } = useTranslation("about")
+  // Add default value to avoid error when mounted
+  // as a component rather than page
+  let { langCode = "" } = useParams()
+
+  useLanguageChange(langCode, pathname, `/${langCode}/about`)
 
   useEffect(() => {
-    if (pathname === "/") {
+    if (pathname === `/${language}`) {
       setLayoutClassName("layout_padding-bottom")
-    } else if (pathname === "/about") {
+    } else if (pathname === `/${language}/about`) {
       setLayoutClassName("layout_padding")
     } else {
       return
     }
-  }, [pathname])
+  }, [pathname, language])
 
   return (
     <section
@@ -35,7 +46,7 @@ export default function About() {
                 {t("heading")}
               </h2>
               <p className="about-para">{t("paragraph")}</p>
-              <Link to="/" className="about-link">
+              <Link to={`/${language}`} className="about-link">
                 {t("linkText")}
               </Link>
             </div>

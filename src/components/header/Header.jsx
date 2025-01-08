@@ -2,7 +2,7 @@
 import styles from "./Header.module.css"
 // React
 import { Link, useLocation } from "react-router"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 // Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons"
@@ -11,6 +11,8 @@ import Navigation from "../navigation/Navigation"
 import Slider from "../slider/Slider"
 // i18
 import { useTranslation } from "react-i18next"
+// Context
+import { LanguageContext } from "../../context/languageContext"
 
 export default function Header() {
   // Only show Slider component if current page is the index (home page)
@@ -18,14 +20,16 @@ export default function Header() {
   const { pathname } = useLocation()
   const [currentPageIsIndex, setCurrentPageIsIndex] = useState(true)
   const { t } = useTranslation("header")
+  const { languageOptions } = useContext(LanguageContext)
+  const { language } = languageOptions
 
   useEffect(() => {
-    if (pathname === "/") {
+    if (pathname === `/${language}`) {
       setCurrentPageIsIndex(true)
     } else {
       setCurrentPageIsIndex(false)
     }
-  }, [pathname])
+  }, [pathname, language])
 
   return (
     <>

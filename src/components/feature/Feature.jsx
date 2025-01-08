@@ -8,13 +8,13 @@ import {
   pathData6,
   pathData7,
   pathData8,
-} from "../../paths/PathData";
+} from "../../paths/PathData"
 // Components
-import Path from "../path/Path";
+import Path from "../path/Path"
 // Styles
 import styles from "./Feature.module.css"
 // i18
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 export default function Feature() {
 
@@ -86,5 +86,5 @@ export default function Feature() {
         </div>
       </div>
     </section>
-  );
+  )
 }

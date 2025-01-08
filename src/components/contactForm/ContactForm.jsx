@@ -2,7 +2,6 @@
 import { useRef, useState } from "react";
 
 export default function ContactForm({ styles, t }) {
-
   const formRef = useRef()
 
   const [name, setName] = useState("")
@@ -47,7 +46,7 @@ export default function ContactForm({ styles, t }) {
         />
       </div>
       <div>
-        {/* I would need to override the default behaviour here depending on language */}
+        {/* I may need to override the default behaviour here depending on language */}
         <input
           type="tel"
           placeholder={t("phonePlaceholder")}
