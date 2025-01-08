@@ -1,5 +1,5 @@
 // React
-import { Link } from "react-router"
+import { Link, useLocation } from "react-router"
 import { useContext } from "react"
 // Styles
 import styles from "./Notfound.module.css"
@@ -11,11 +11,20 @@ import Footer from "../../components/footer/Footer"
 import { LanguageContext } from "../../context/languageContext"
 // i18
 import { useTranslation } from "react-i18next"
+// Hooks
+import useLanguageChange from "../../hooks/useLanguageChange"
 
 export default function Notfound() {
   const { languageOptions } = useContext(LanguageContext)
   const { language } = languageOptions
   const { t } = useTranslation("notFound")
+  // Show 404 page in user's language
+  const { pathname } = useLocation()
+  const currentPage = pathname
+  // Get language code
+  const langCode = pathname.split("/")[1]
+
+  useLanguageChange(langCode, pathname, currentPage)
 
   return (
     <>
