@@ -5,7 +5,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 // Components
 import Layout from "./components/layout/Layout"
 import About from "./components/about/About"
@@ -53,13 +53,15 @@ export default function App() {
     }
   }, [languageOptions])
 
-  const updateLanguageOptions = (language, textDirection) => {
+  // Important: wrap in useCallback to ensure it remains stable on rerenders
+  // Function is created on every render
+  const updateLanguageOptions = useCallback((language, textDirection) => {
     // Store new language options in local storage
     const updatedOptions = { language: language, textDirection: textDirection }
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(updatedOptions))
     // Update current language options
     setLanguageOptions(updatedOptions)
-  }
+  }, [])
 
   const appContext = {
     languageOptions,
