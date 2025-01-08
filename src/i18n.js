@@ -12,6 +12,7 @@ import HeaderEn from "./locales/en/header.json"
 import HeroEn from "./locales/en/hero.json"
 import ProfessionalEn from "./locales/en/professional.json"
 import ServicesEn from "./locales/en/services.json"
+import NotFoundEn from "./locales/en/notFound.json"
 // Arabic translations
 import AboutAr from "./locales/ar/about.json";
 import ClientAr from "./locales/ar/client.json";
@@ -23,6 +24,7 @@ import HeaderAr from "./locales/ar/header.json";
 import HeroAr from "./locales/ar/hero.json";
 import ProfessionalAr from "./locales/ar/professional.json";
 import ServicesAr from "./locales/ar/services.json";
+import NotFoundAr from "./locales/ar/notFound.json";
 
 // Translations
 const resources = {
@@ -37,6 +39,7 @@ const resources = {
     hero: HeroEn,
     professional: ProfessionalEn,
     services: ServicesEn,
+    notFound: NotFoundEn,
   },
   ar: {
     about: AboutAr,
@@ -49,6 +52,7 @@ const resources = {
     hero: HeroAr,
     professional: ProfessionalAr,
     services: ServicesAr,
+    notFound: NotFoundAr,
   },
 };
 
