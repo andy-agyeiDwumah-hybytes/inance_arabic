@@ -37,10 +37,13 @@ const router = createBrowserRouter(
 )
 
 export default function App() {
-  // Set default to english language
-  const [languageOptions, setLanguageOptions] = useState(
-    ENGLISHLANGUAGEOPTIONS
-  )
+  // Get language options from local storage
+  // If it doesn't exist, fallback to english language options
+  const getInitialLanguageOptions = () => {
+    return JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) ?? ENGLISHLANGUAGEOPTIONS 
+  }
+
+  const [languageOptions, setLanguageOptions] = useState(getInitialLanguageOptions)
 
   // Updates text direction for website when user changes language
   useEffect(() => {
