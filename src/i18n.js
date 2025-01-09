@@ -25,6 +25,18 @@ import HeroAr from "./locales/ar/hero.json";
 import ProfessionalAr from "./locales/ar/professional.json";
 import ServicesAr from "./locales/ar/services.json";
 import NotFoundAr from "./locales/ar/notFound.json";
+// French translations
+import AboutFr from "./locales/fr/about.json";
+import ClientFr from "./locales/fr/client.json";
+import ContactFr from "./locales/fr/contact.json";
+import FeatureFr from "./locales/fr/feature.json";
+import FooterFr from "./locales/fr/footer.json";
+import GetInTouchFr from "./locales/fr/getInTouch.json";
+import HeaderFr from "./locales/fr/header.json";
+import HeroFr from "./locales/fr/hero.json";
+import ProfessionalFr from "./locales/fr/professional.json";
+import ServicesFr from "./locales/fr/services.json";
+import NotFoundFr from "./locales/fr/notFound.json";
 
 // Translations
 const resources = {
@@ -53,6 +65,19 @@ const resources = {
     professional: ProfessionalAr,
     services: ServicesAr,
     notFound: NotFoundAr,
+  },
+  fr: {
+    about: AboutFr,
+    client: ClientFr,
+    contact: ContactFr,
+    feature: FeatureFr,
+    footer: FooterFr,
+    getInTouch: GetInTouchFr,
+    header: HeaderFr,
+    hero: HeroFr,
+    professional: ProfessionalFr,
+    services: ServicesFr,
+    notFound: NotFoundFr,
   },
 };
 

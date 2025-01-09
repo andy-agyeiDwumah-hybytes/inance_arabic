@@ -9,4 +9,9 @@ export const languages = [
     languageCode: "ar",
     writingMode: "rtl"
   },
+{
+    language: "french",
+    languageCode: "fr",
+    writingMode: "ltr"
+  },
 ];
