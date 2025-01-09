@@ -37,10 +37,7 @@ export default function Header() {
         <div className={styles.top}>
           <div className="container-fluid">
             <div className={["contact_nav", styles.contactNav].join(" ")}>
-              <Link
-                to="/"
-                className={styles.topHeaderLinks}
-              >
+              <Link to={`/${language}`} className={styles.topHeaderLinks}>
                 <div className={styles.iconTextContainer}>
                   <FontAwesomeIcon
                     icon={faPhone}
@@ -49,10 +46,7 @@ export default function Header() {
                 </div>
                 <div>{t("callText")}</div>
               </Link>
-              <Link
-                to="/"
-                className={styles.topHeaderLinks}
-              >
+              <Link to={`/${language}`} className={styles.topHeaderLinks}>
                 <div className={styles.iconTextContainer}>
                   <FontAwesomeIcon
                     icon={faEnvelope}

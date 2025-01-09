@@ -54,7 +54,5 @@ export default function useLanguageChange(langCode, pathname, currentPage) {
       // Navigate to language home page
       navigate(`/${languageCode}`);
     }
-  }, [i18n, langCode, pathname, currentPage, updateLanguageOptions]);
-
-  return null;
+  }, [i18n, langCode, pathname, currentPage, updateLanguageOptions, navigate]);
 }
