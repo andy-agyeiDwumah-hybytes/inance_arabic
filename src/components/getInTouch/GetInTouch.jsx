@@ -15,11 +15,19 @@ import {
   faMapMarker,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons"
+import { useContext } from "react"
 // i18
 import { useTranslation } from "react-i18next"
+// React
+import { useLocation } from "react-router"
+// Context
+import { LanguageContext } from "../../context/languageContext"
 
 export default function GetInTouch() {
   const { t, i18n } = useTranslation("getInTouch")
+  const { pathname } = useLocation()
+  const { handleLinkClick } = useContext(LanguageContext)
+  let currentLanguageCode = i18n.language
 
   return (
     <section
@@ -38,7 +46,9 @@ export default function GetInTouch() {
                   icon={faMapMarker}
                   styles={styles}
                   dataContent="location"
-                  languageCode={i18n.language}
+                  languageCode={currentLanguageCode}
+                  onHandleLinkClick={handleLinkClick}
+                  pathname={pathname}
                 >
                   {t("getInTouchImgOneText")}
                 </GetInTouchImg>
@@ -46,7 +56,9 @@ export default function GetInTouch() {
                   icon={faPhone}
                   styles={styles}
                   dataContent="phone"
-                  languageCode={i18n.language}
+                  languageCode={currentLanguageCode}
+                  onHandleLinkClick={handleLinkClick}
+                  pathname={pathname}
                 >
                   {t("getInTouchImgTwoText")}
                 </GetInTouchImg>
@@ -54,7 +66,9 @@ export default function GetInTouch() {
                   icon={faEnvelope}
                   styles={styles}
                   dataContent="mail"
-                  languageCode={i18n.language}
+                  languageCode={currentLanguageCode}
+                  onHandleLinkClick={handleLinkClick}
+                  pathname={pathname}
                 >
                   {t("getInTouchImgThreeText")}
                 </GetInTouchImg>
@@ -69,27 +83,35 @@ export default function GetInTouch() {
               <GetInTouchIcon
                 icon={faFacebookF}
                 styles={styles}
-                languageCode={i18n.language}
+                languageCode={currentLanguageCode}
+                onHandleLinkClick={handleLinkClick}
+                pathname={pathname}
               />
               <GetInTouchIcon
                 icon={faTwitter}
                 styles={styles}
-                languageCode={i18n.language}
+                languageCode={currentLanguageCode}
+                onHandleLinkClick={handleLinkClick}
+                pathname={pathname}
               />
               <GetInTouchIcon
                 icon={faYoutube}
                 styles={styles}
-                languageCode={i18n.language}
+                languageCode={currentLanguageCode}
+                onHandleLinkClick={handleLinkClick}
+                pathname={pathname}
               />
               <GetInTouchIcon
                 icon={faInstagram}
                 styles={styles}
-                languageCode={i18n.language}
+                languageCode={currentLanguageCode}
+                onHandleLinkClick={handleLinkClick}
+                pathname={pathname}
               />
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

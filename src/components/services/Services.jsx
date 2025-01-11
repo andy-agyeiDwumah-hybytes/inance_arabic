@@ -11,10 +11,13 @@ import plumbingImg from "../../assets/s3.png"
 import styles from "./Services.module.css"
 // React
 import { Link, useLocation, useParams } from "react-router"
+import { useContext } from "react"
 // i18
 import { useTranslation } from "react-i18next"
 // Hooks
 import useLanguageChange from "../../hooks/useLanguageChange"
+// Context
+import { LanguageContext } from "../../context/languageContext"
 
 export default function Services() {
   const { t } = useTranslation("services")
@@ -23,15 +26,17 @@ export default function Services() {
   let { langCode = "" } = useParams()
   const { pathname } = useLocation()
   const { i18n } = useTranslation()
+  const { handleLinkClick } = useContext(LanguageContext)
+  let languageCode = i18n.language
 
   useLanguageChange(langCode, pathname, `/${langCode}/services`)
 
   return (
     <>
-      {pathname === `/${i18n.language}/services` && (
-      <div className="hero_area">
-        <Header />
-      </div>
+      {pathname === `/${languageCode}/services` && (
+        <div className="hero_area">
+          <Header />
+        </div>
       )}
       <section
         className={["layout_padding", styles.section].join(" ")}
@@ -66,9 +71,11 @@ export default function Services() {
           </div>
           <div className={styles.btnBox}>
             <Link
-              to={`/${i18n.language}`}
+              to={`/${languageCode}`}
               className={styles.btnBoxLink}
-              state={{ linkWasNotClicked: false }}
+              onClick={e =>
+                handleLinkClick(e, pathname, `/${languageCode}`)
+              }
             >
               {t("linkText")}
             </Link>
@@ -76,7 +83,7 @@ export default function Services() {
         </div>
       </section>
       {/* Show when pathname matches current page */}
-      {pathname === `/${i18n.language}/services` && (
+      {pathname === `/${languageCode}/services` && (
         <>
           <GetInTouch />
           <Footer />

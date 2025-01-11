@@ -1,17 +1,23 @@
 // React
-import { Link, NavLink } from "react-router"
+import { Link, NavLink, useLocation } from "react-router"
+import { useContext } from "react";
 // i18
 import { useTranslation } from "react-i18next"
+// Context
+import { LanguageContext } from "../../context/languageContext";
 
 export default function Navigation({ styles, t }) {
   const { i18n } = useTranslation()
+  const { handleLinkClick } = useContext(LanguageContext)
+  const { pathname } = useLocation()
+  let languageCode = i18n.language
 
   return (
     <nav
       className={["navbar", "navbar-expand-lg", styles.nav].join(" ")}
       aria-label="Primary"
     >
-      <Link to={`/${i18n.language}`} className="navbar-brand">
+      <Link to={`/${languageCode}`} className="navbar-brand" onClick={e => handleLinkClick(e, pathname, `/${languageCode}`)}>
         <span className={styles.inanceText}>Inance</span>
       </Link>
       <button
@@ -32,8 +38,9 @@ export default function Navigation({ styles, t }) {
         <menu className={["navbar-nav", styles.navbarNav].join(" ")}>
           <li className="nav-item">
             <NavLink
-              to={`/${i18n.language}`}
+              to={`/${languageCode}`}
               className={[styles.menuLinks, "nav-link"].join(" ")}
+              onClick={e => handleLinkClick(e, pathname, `/${languageCode}`)}
               // Match only when the URL is exactly the same as link
               end
             >
@@ -42,7 +49,7 @@ export default function Navigation({ styles, t }) {
           </li>
           <li className="nav-item">
             <NavLink
-              to={`/${i18n.language}/about`}
+              to={`/${languageCode}/about`}
               className={[styles.menuLinks, "nav-link"].join(" ")}
               end
             >
@@ -51,7 +58,7 @@ export default function Navigation({ styles, t }) {
           </li>
           <li className="nav-item">
             <NavLink
-              to={`/${i18n.language}/services`}
+              to={`/${languageCode}/services`}
               className={[styles.menuLinks, "nav-link"].join(" ")}
               end
             >
@@ -60,7 +67,7 @@ export default function Navigation({ styles, t }) {
           </li>
           <li className="nav-item">
             <NavLink
-              to={`/${i18n.language}/contact`}
+              to={`/${languageCode}/contact`}
               className={[styles.menuLinks, "nav-link"].join(" ")}
               end
             >

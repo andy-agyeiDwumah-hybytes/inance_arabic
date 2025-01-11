@@ -1,6 +1,6 @@
 // React
 import { Link, useLocation, useParams } from "react-router"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 // Images
 import aboutImg from "../../assets/about-img.jpg"
 // i18
@@ -11,6 +11,8 @@ import useLanguageChange from "../../hooks/useLanguageChange"
 import GetInTouch from "../getInTouch/GetInTouch"
 import Footer from "../footer/Footer"
 import Header from "../header/Header"
+// Context
+import { LanguageContext } from "../../context/languageContext"
 
 export default function About() {
   // Classname differs depending on the path
@@ -20,25 +22,27 @@ export default function About() {
   // Add default value to avoid error when mounted
   // as a component rather than page
   let { langCode = "" } = useParams()
+  const { handleLinkClick } = useContext(LanguageContext)
+  let currentLangCode = i18n.language
 
   useLanguageChange(langCode, pathname, `/${langCode}/about`)
 
   useEffect(() => {
-    if (pathname === `/${i18n.language}`) {
+    if (pathname === `/${currentLangCode}`) {
       setLayoutClassName("layout_padding-bottom")
-    } else if (pathname === `/${i18n.language}/about`) {
+    } else if (pathname === `/${currentLangCode}/about`) {
       setLayoutClassName("layout_padding")
     } else {
       return
     }
-  }, [pathname, i18n.language])
+  }, [pathname, currentLangCode])
 
   return (
     <>
-      {pathname === `/${i18n.language}/about` && (
-      <div className="hero_area">
-        <Header />
-      </div>
+      {pathname === `/${currentLangCode}/about` && (
+        <div className="hero_area">
+          <Header />
+        </div>
       )}
       <section
         className={["about_section", layoutClassName].join(" ")}
@@ -53,9 +57,9 @@ export default function About() {
                 </h2>
                 <p className="about-para">{t("paragraph")}</p>
                 <Link
-                  to={`/${i18n.language}`}
+                  to={`/${currentLangCode}`}
                   className="about-link"
-                  state={{ linkWasNotClicked: false }}
+                  onClick={e => handleLinkClick(e, pathname, `/${currentLangCode}`)}
                 >
                   {t("linkText")}
                 </Link>
@@ -76,12 +80,12 @@ export default function About() {
         </div>
       </section>
       {/* Show when pathname matches current page */}
-      {pathname === `/${i18n.language}/about` && (
+      {pathname === `/${currentLangCode}/about` && (
         <>
           <GetInTouch />
           <Footer />
         </>
       )}
     </>
-  )
+  );
 }

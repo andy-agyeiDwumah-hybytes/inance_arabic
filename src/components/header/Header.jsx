@@ -2,7 +2,7 @@
 import styles from "./Header.module.css"
 // React
 import { Link, useLocation } from "react-router"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 // Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons"
@@ -11,6 +11,8 @@ import Navigation from "../navigation/Navigation"
 import Slider from "../slider/Slider"
 // i18
 import { useTranslation } from "react-i18next"
+// Context
+import { LanguageContext } from "../../context/languageContext"
 
 export default function Header() {
   const { pathname } = useLocation()
@@ -18,14 +20,16 @@ export default function Header() {
   // True by default
   const [currentPageIsIndex, setCurrentPageIsIndex] = useState(true)
   const { t, i18n } = useTranslation("header")
+  const { handleLinkClick } = useContext(LanguageContext)
+  let homePage = `/${i18n.language}`
 
   useEffect(() => {
-    if (pathname === `/${i18n.language}`) {
+    if (pathname === homePage) {
       setCurrentPageIsIndex(true)
     } else {
       setCurrentPageIsIndex(false)
     }
-  }, [pathname, i18n.language])
+  }, [pathname, homePage])
 
   return (
     <>
@@ -33,7 +37,7 @@ export default function Header() {
         <div className={styles.top}>
           <div className="container-fluid">
             <div className={["contact_nav", styles.contactNav].join(" ")}>
-              <Link to={`/${i18n.language}`} className={styles.topHeaderLinks}>
+              <Link to={homePage} className={styles.topHeaderLinks} onClick={e => handleLinkClick(e, pathname, homePage)}>
                 <div className={styles.iconTextContainer}>
                   <FontAwesomeIcon
                     icon={faPhone}
@@ -42,7 +46,7 @@ export default function Header() {
                 </div>
                 <div>{t("callText")}</div>
               </Link>
-              <Link to={`/${i18n.language}`} className={styles.topHeaderLinks}>
+              <Link to={homePage} className={styles.topHeaderLinks} onClick={e => handleLinkClick(e, pathname, homePage)}>
                 <div className={styles.iconTextContainer}>
                   <FontAwesomeIcon
                     icon={faEnvelope}

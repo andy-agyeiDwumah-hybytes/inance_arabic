@@ -3,12 +3,18 @@ import styles from "./Professional.module.css"
 // Images
 import professionalImg from "../../assets/professional-img.png"
 // React
-import { Link } from "react-router"
+import { Link, useLocation } from "react-router"
+import { useContext } from "react"
 // i18
 import { useTranslation } from "react-i18next"
+// Context
+import { LanguageContext } from "../../context/languageContext"
 
 export default function Professional() {
   const { t, i18n } = useTranslation("professional")
+  const { handleLinkClick } = useContext(LanguageContext)
+  const { pathname } = useLocation()
+  let languageCode = i18n.language
 
   return (
     <section
@@ -41,7 +47,13 @@ export default function Professional() {
                 {t("headingEnd")}
               </h2>
               <p className={styles.para}>{t("paragraph")}</p>
-              <Link to={`/${i18n.language}`} className={styles.link}>
+              <Link
+                to={`/${languageCode}`}
+                className={styles.link}
+                onClick={e =>
+                  handleLinkClick(e, pathname, `/${languageCode}`)
+                }
+              >
                 {t("linkText")}
               </Link>
             </div>
@@ -49,5 +61,5 @@ export default function Professional() {
         </div>
       </div>
     </section>
-  )
+  );
 }

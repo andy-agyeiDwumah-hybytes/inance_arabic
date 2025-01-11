@@ -59,10 +59,18 @@ export default function App() {
     console.log("language changed")
   }, [])
 
+  // Prevents scrollbar flicker
+  const handleLinkClick = useCallback((e, pathname, homePage) => {
+    if (pathname === homePage) {
+      e.preventDefault()
+    }
+  }, [])
+
   const appContext = {
     languageOptions,
     setLanguageOptions,
     updateLanguageOptions,
+    handleLinkClick
   }
 
   return (
