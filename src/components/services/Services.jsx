@@ -2,6 +2,7 @@
 import Service from "../service/Service"
 import GetInTouch from "../getInTouch/GetInTouch"
 import Footer from "../footer/Footer"
+import Header from "../header/Header"
 // Images
 import maintenanceImg from "../../assets/s1.png"
 import electricalImg from "../../assets/s2.png"
@@ -27,6 +28,11 @@ export default function Services() {
 
   return (
     <>
+      {pathname === `/${i18n.language}/services` && (
+      <div className="hero_area">
+        <Header />
+      </div>
+      )}
       <section
         className={["layout_padding", styles.section].join(" ")}
         aria-labelledby="services-heading"
@@ -77,5 +83,5 @@ export default function Services() {
         </>
       )}
     </>
-  )
+  );
 }

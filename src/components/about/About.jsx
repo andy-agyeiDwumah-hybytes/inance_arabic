@@ -7,8 +7,10 @@ import aboutImg from "../../assets/about-img.jpg"
 import { useTranslation } from "react-i18next"
 // Hooks
 import useLanguageChange from "../../hooks/useLanguageChange"
+// Components
 import GetInTouch from "../getInTouch/GetInTouch"
 import Footer from "../footer/Footer"
+import Header from "../header/Header"
 
 export default function About() {
   // Classname differs depending on the path
@@ -33,6 +35,11 @@ export default function About() {
 
   return (
     <>
+      {pathname === `/${i18n.language}/about` && (
+      <div className="hero_area">
+        <Header />
+      </div>
+      )}
       <section
         className={["about_section", layoutClassName].join(" ")}
         aria-labelledby="about"

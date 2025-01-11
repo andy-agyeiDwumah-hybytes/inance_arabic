@@ -7,7 +7,6 @@ import {
 } from "react-router"
 import { useCallback, useState } from "react"
 // Components
-import Layout from "./components/layout/Layout"
 import About from "./components/about/About"
 import Services from "./components/services/Services"
 import Contact from "./components/contact/Contact"
@@ -25,16 +24,17 @@ import { LOCALSTORAGEKEY, ENGLISHLANGUAGEOPTIONS } from "./constants/Constants"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    // Language code is optional
-    // See 'Index.jsx' and custom hook for more details
-    <Route path="/:langCode?" element={<Layout />} errorElement={<Notfound />}>
-      <Route index element={<Index />} />
-      <Route path="about" element={<About />} />
-      <Route path="services" element={<Services />} />
-      <Route path="contact" element={<Contact />} />
-    </Route>
+    <>
+    {/* Language code is optional */}
+    {/* See 'Index.jsx' and custom hook for more details */}
+      <Route path="/:langCode?" element={<Index />} />
+      <Route path="/:langCode/about" element={<About />} />
+      <Route path="/:langCode/services" element={<Services />} />
+      <Route path="/:langCode/contact" element={<Contact />} />
+      <Route path="*" element={<Notfound />} />
+    </>
   )
-)
+);
 
 export default function App() {
   // Get language options from local storage

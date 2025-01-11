@@ -1,6 +1,9 @@
 // Components
 import ContactForm from "../contactForm/ContactForm"
 import GoogleMap from "../googleMap/GoogleMap"
+import GetInTouch from "../getInTouch/GetInTouch"
+import Footer from "../footer/Footer"
+import Header from "../header/Header"
 // Styles
 import styles from "./Contact.module.css"
 // i18
@@ -9,9 +12,6 @@ import { useTranslation } from "react-i18next"
 import { useLocation, useParams } from "react-router"
 // Hooks
 import useLanguageChange from "../../hooks/useLanguageChange"
-// Components
-import GetInTouch from "../getInTouch/GetInTouch"
-import Footer from "../footer/Footer"
 
 export default function Contact() {
   const { t, i18n } = useTranslation("contact")
@@ -24,6 +24,11 @@ export default function Contact() {
 
   return (
     <>
+      {pathname === `/${i18n.language}/contact` && (
+      <div className="hero_area">
+        <Header />
+      </div>
+      )}
       <section
         className="contact_section layout_padding"
         aria-labelledby="contact-us-heading"
