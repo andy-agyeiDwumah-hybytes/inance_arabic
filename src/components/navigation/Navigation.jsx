@@ -42,24 +42,27 @@ export default function Navigation({ styles, t }) {
           </li>
           <li className="nav-item">
             <NavLink
-              to="about"
+              to={`/${i18n.language}/about`}
               className={[styles.menuLinks, "nav-link"].join(" ")}
+              end
             >
               {t("aboutLinkText")}
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink
-              to="services"
+              to={`/${i18n.language}/services`}
               className={[styles.menuLinks, "nav-link"].join(" ")}
+              end
             >
               {t("servicesLinkText")}
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink
-              to="contact"
+              to={`/${i18n.language}/contact`}
               className={[styles.menuLinks, "nav-link"].join(" ")}
+              end
             >
               {t("contactLinkText")}
             </NavLink>
@@ -67,5 +70,5 @@ export default function Navigation({ styles, t }) {
         </menu>
       </div>
     </nav>
-  )
+  );
 }

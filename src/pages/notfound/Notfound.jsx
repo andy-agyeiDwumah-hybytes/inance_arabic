@@ -32,7 +32,7 @@ export default function Notfound() {
       <main className={styles.wrapper}>
         <p>
           {t("pageNotFoundText")}{" "}
-          <Link to={`/${language}`}>{t("backToHomeText")}</Link>
+          <Link to={`/${language}`} replace>{t("backToHomeText")}</Link>
         </p>
       </main>
       <GetInTouch />
