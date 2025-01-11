@@ -18,6 +18,11 @@ export default function useLanguageChange(langCode, pathname, currentPage) {
   const navigate = useNavigate();
   const navigationType = useNavigationType()
 
+  // Update direction when current language direction does not match
+  if (document.documentElement.style.direction !== i18n.dir()) {
+    document.documentElement.setAttribute("dir", i18n.dir())
+  }
+
   useEffect(() => {
     // Only run hook if pathname matches current page
     // Some components (i.e., about, services, contact) are also pages
@@ -38,7 +43,6 @@ export default function useLanguageChange(langCode, pathname, currentPage) {
           // Value comes from local storage (see App.jsx)
           navigate(`/${languageOptions.language}`);
           i18n.changeLanguage(languageOptions.language);
-          document.documentElement.setAttribute("dir", languageOptions.textDirection);
         }
         else if (languageOptions.language !== langCode) {
           console.log("Local storage key not equal to lang code")
@@ -50,11 +54,9 @@ export default function useLanguageChange(langCode, pathname, currentPage) {
             textDirection: languageCodeExists.writingMode,
           });
           i18n.changeLanguage(langCode);
-          document.documentElement.setAttribute("dir", languageCodeExists.writingMode);
         } else {
           console.log("Local storage key equal to lang code.");
           i18n.changeLanguage(languageCodeExists.languageCode);
-          document.documentElement.setAttribute("dir", languageCodeExists.writingMode);
         }
       } else {
         // When a link is clicked - do not update state, local storage, or change language

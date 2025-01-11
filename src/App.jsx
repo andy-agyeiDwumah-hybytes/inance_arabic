@@ -50,14 +50,14 @@ export default function App() {
   const [languageOptions, setLanguageOptions] = useState(getInitialLanguageOptions)
 
   // wrap in useCallback to ensure it remains stable on rerenders
-  const updateLanguageOptions = useCallback((language, textDirection) => {
-    // Store new language options in local storage
-    const updatedOptions = { language: language, textDirection: textDirection }
-    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(updatedOptions))
-    // Update current language options
-    setLanguageOptions(updatedOptions)
-    console.log("language changed")
-  }, [])
+  // const updateLanguageOptions = useCallback((language, textDirection) => {
+  //   // Store new language options in local storage
+  //   const updatedOptions = { language: language, textDirection: textDirection }
+  //   localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(updatedOptions))
+  //   // Update current language options
+  //   setLanguageOptions(updatedOptions)
+  //   console.log("language changed")
+  // }, [])
 
   // Prevents scrollbar flicker
   const handleLinkClick = useCallback((e, pathname, homePage) => {
@@ -69,7 +69,7 @@ export default function App() {
   const appContext = {
     languageOptions,
     setLanguageOptions,
-    updateLanguageOptions,
+    // updateLanguageOptions,
     handleLinkClick
   }
 
