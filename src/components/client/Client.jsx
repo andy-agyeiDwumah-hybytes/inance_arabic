@@ -9,36 +9,30 @@ import styles from "./Client.module.css"
 import ReactOwlCarousel from "react-owl-carousel"
 // i18
 import { useTranslation } from "react-i18next"
-// React
-import { useContext } from "react"
-// Context
-import { LanguageContext } from "../../context/languageContext"
 
 export default function Client() {
-  const { t } = useTranslation("client")
-  const { languageOptions } = useContext(LanguageContext)
-  const { textDirection } = languageOptions
+  const { t, i18n } = useTranslation("client")
 
-    // Options for owl carousel
-    const options = {
-      loop: true,
-      margin: 10,
-      nav: true,
-      dots: false,
-      navText: [
-        // Cannot use FontAwesome icons here because they cannot be directly
-        // converted into strings or HTML inside a template literal
-        `<span class="nav-button"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></span>`,
-        `<span class="nav-button"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>`,
-      ],
-      autoplay: true,
-      autoplayHoverPause: true,
-      responsive: {
-        0: { items: 1 },
-        768: { items: 2 },
-        1000: { items: 2 },
-      },
-    }
+  // Options for owl carousel
+  const options = {
+    loop: true,
+    margin: 10,
+    nav: true,
+    dots: false,
+    navText: [
+      // Cannot use FontAwesome icons here because they cannot be directly
+      // converted into strings or HTML inside a template literal
+      `<span class="nav-button"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></span>`,
+      `<span class="nav-button"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>`,
+    ],
+    autoplay: true,
+    autoplayHoverPause: true,
+    responsive: {
+      0: { items: 1 },
+      768: { items: 2 },
+      1000: { items: 2 },
+    },
+  }
 
   return (
     <section className="client_section" aria-labelledby="clients-heading">
@@ -62,7 +56,7 @@ export default function Client() {
             dir="ltr"
             // Third party libraries like this do not always integrate smoothly with React state updates
             // Add 'key' prop to force carousel to reinitialise when language changes
-            key={textDirection}
+            key={i18n.language}
           >
             {/* Duplicate to prevent disabled buttons */}
             {/* Buttons become disabled when there are not enough items to cycle */}
@@ -71,7 +65,7 @@ export default function Client() {
               name="Jorch morik"
               numOfStars={5}
               styles={styles}
-              textDirection={textDirection}
+              textDirection={i18n.dir()}
             >
               {t("clientInfoOne")}
             </ClientInfo>
@@ -80,7 +74,7 @@ export default function Client() {
               name="Jorch morik"
               numOfStars={5}
               styles={styles}
-              textDirection={textDirection}
+              textDirection={i18n.dir()}
             >
               {t("clientInfoTwo")}
             </ClientInfo>
@@ -89,7 +83,7 @@ export default function Client() {
               name="Jorch morik"
               numOfStars={5}
               styles={styles}
-              textDirection={textDirection}
+              textDirection={i18n.dir()}
             >
               {t("clientInfoThree")}
             </ClientInfo>
@@ -98,7 +92,7 @@ export default function Client() {
               name="Jorch morik"
               numOfStars={5}
               styles={styles}
-              textDirection={textDirection}
+              textDirection={i18n.dir()}
             >
               {t("clientInfoFour")}
             </ClientInfo>

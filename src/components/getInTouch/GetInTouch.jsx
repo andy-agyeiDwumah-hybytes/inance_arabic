@@ -4,20 +4,22 @@ import GetInTouchImg from "../getInTouchImg/GetInTouchImg"
 // Styles
 import styles from "./GetInTouch.module.css"
 // Font awesome
-import { faFacebookF, faTwitter, faYoutube, faInstagram } from "@fortawesome/free-brands-svg-icons"
-import { faPhone, faMapMarker, faEnvelope } from "@fortawesome/free-solid-svg-icons"
+import {
+  faFacebookF,
+  faTwitter,
+  faYoutube,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons"
+import {
+  faPhone,
+  faMapMarker,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons"
 // i18
 import { useTranslation } from "react-i18next"
-// Context
-import { LanguageContext } from "../../context/languageContext"
-// React
-import { useContext } from "react"
 
 export default function GetInTouch() {
-
-  const { t } = useTranslation("getInTouch")
-  const { languageOptions } = useContext(LanguageContext)
-  const { language } = languageOptions
+  const { t, i18n } = useTranslation("getInTouch")
 
   return (
     <section
@@ -36,7 +38,7 @@ export default function GetInTouch() {
                   icon={faMapMarker}
                   styles={styles}
                   dataContent="location"
-                  languageCode={language}
+                  languageCode={i18n.language}
                 >
                   {t("getInTouchImgOneText")}
                 </GetInTouchImg>
@@ -44,7 +46,7 @@ export default function GetInTouch() {
                   icon={faPhone}
                   styles={styles}
                   dataContent="phone"
-                  languageCode={language}
+                  languageCode={i18n.language}
                 >
                   {t("getInTouchImgTwoText")}
                 </GetInTouchImg>
@@ -52,7 +54,7 @@ export default function GetInTouch() {
                   icon={faEnvelope}
                   styles={styles}
                   dataContent="mail"
-                  languageCode={language}
+                  languageCode={i18n.language}
                 >
                   {t("getInTouchImgThreeText")}
                 </GetInTouchImg>
@@ -67,22 +69,22 @@ export default function GetInTouch() {
               <GetInTouchIcon
                 icon={faFacebookF}
                 styles={styles}
-                languageCode={language}
+                languageCode={i18n.language}
               />
               <GetInTouchIcon
                 icon={faTwitter}
                 styles={styles}
-                languageCode={language}
+                languageCode={i18n.language}
               />
               <GetInTouchIcon
                 icon={faYoutube}
                 styles={styles}
-                languageCode={language}
+                languageCode={i18n.language}
               />
               <GetInTouchIcon
                 icon={faInstagram}
                 styles={styles}
-                languageCode={language}
+                languageCode={i18n.language}
               />
             </div>
           </div>

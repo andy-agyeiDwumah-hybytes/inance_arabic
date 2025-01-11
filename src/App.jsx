@@ -5,7 +5,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 // Components
 import Layout from "./components/layout/Layout"
 import About from "./components/about/About"
@@ -38,36 +38,30 @@ const router = createBrowserRouter(
 
 export default function App() {
   // Get language options from local storage
-  // If it doesn't exist, fallback to english language options
+  // If it doesn't exist fallback to english options
   const getInitialLanguageOptions = () => {
-    return JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) ?? ENGLISHLANGUAGEOPTIONS 
+    let localStorageLangOptionSet = JSON.parse(localStorage.getItem(LOCALSTORAGEKEY))
+    if (localStorageLangOptionSet) {
+      return localStorageLangOptionSet
+    }
+    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(ENGLISHLANGUAGEOPTIONS))
+    return ENGLISHLANGUAGEOPTIONS
   }
-
   const [languageOptions, setLanguageOptions] = useState(getInitialLanguageOptions)
 
-  // Updates text direction for website when user changes language
-  useEffect(() => {
-    const html = document.documentElement
-
-    if (languageOptions["textDirection"] === "ltr") {
-      html.setAttribute("dir", "ltr")
-    } else if (languageOptions["textDirection"] === "rtl") {
-      html.setAttribute("dir", "rtl")
-    }
-  }, [languageOptions])
-
-  // Important: wrap in useCallback to ensure it remains stable on rerenders
-  // Function is created on every render
+  // wrap in useCallback to ensure it remains stable on rerenders
   const updateLanguageOptions = useCallback((language, textDirection) => {
     // Store new language options in local storage
     const updatedOptions = { language: language, textDirection: textDirection }
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(updatedOptions))
     // Update current language options
     setLanguageOptions(updatedOptions)
+    console.log("language changed")
   }, [])
 
   const appContext = {
     languageOptions,
+    setLanguageOptions,
     updateLanguageOptions,
   }
 

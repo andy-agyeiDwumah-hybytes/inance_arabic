@@ -1,12 +1,11 @@
 // React
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useNavigationType } from "react-router";
 // Languages
 import { languages } from "../languages/languageCodes";
 // Constants
 import {
   LOCALSTORAGEKEY,
-  ENGLISHLANGUAGEOPTIONS,
 } from "../constants/Constants";
 // Context
 import { LanguageContext } from "../context/languageContext";
@@ -14,9 +13,10 @@ import { LanguageContext } from "../context/languageContext";
 import { useTranslation } from "react-i18next";
 
 export default function useLanguageChange(langCode, pathname, currentPage) {
-  const { updateLanguageOptions } = useContext(LanguageContext);
+  const { languageOptions, setLanguageOptions } = useContext(LanguageContext);
   const { i18n } = useTranslation();
   const navigate = useNavigate();
+  const navigationType = useNavigationType()
 
   useEffect(() => {
     // Only run hook if pathname matches current page
@@ -28,31 +28,43 @@ export default function useLanguageChange(langCode, pathname, currentPage) {
       val => val.languageCode === langCode
     );
 
-    if (languageCodeExists) {
-      // console.log("language code exists");
-      // Update language and local storage
-      i18n.changeLanguage(languageCodeExists.languageCode);
-      updateLanguageOptions(
-        languageCodeExists.languageCode,
-        languageCodeExists.writingMode
-      );
+    // langCode === "home" - when pathname is "/"
+    if (languageCodeExists || langCode === "home") {
+      // Page refresh or back/forward navigation detected
+      if (navigationType === "POP") {
+        console.log("update page: custom hook");
+        if (langCode === "home") {
+          console.log("No lang code provided. navigating to language home page");
+          // Value comes from local storage (see App.jsx)
+          navigate(`/${languageOptions.language}`);
+          i18n.changeLanguage(languageOptions.language);
+          document.documentElement.setAttribute("dir", languageOptions.textDirection);
+        }
+        else if (languageOptions.language !== langCode) {
+          console.log("Local storage key not equal to lang code")
+          // Update local storage and language state
+          const updatedOptions = { language: langCode, textDirection: languageCodeExists.writingMode }
+          localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(updatedOptions))
+          setLanguageOptions({
+            language: languageCodeExists.languageCode,
+            textDirection: languageCodeExists.writingMode,
+          });
+          i18n.changeLanguage(langCode);
+          document.documentElement.setAttribute("dir", languageCodeExists.writingMode);
+        } else {
+          console.log("Local storage key equal to lang code.");
+          i18n.changeLanguage(languageCodeExists.languageCode);
+          document.documentElement.setAttribute("dir", languageCodeExists.writingMode);
+        }
+      } else {
+        // When a link is clicked - do not update state, local storage, or change language
+        console.log("no update: custom hook");
+      }
     } else {
-      // console.log("language code doesn't exist");
-      // Retrieve current language code in local storage
-      // If not provided, fallback to English language options
-      const localStorageLangOptions =
-        JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) ??
-        ENGLISHLANGUAGEOPTIONS;
-
-      const languageCode = localStorageLangOptions.language;
-
-      i18n.changeLanguage(languageCode);
-      updateLanguageOptions(
-        languageCode,
-        localStorageLangOptions.textDirection
-      );
-      // Navigate to language home page
-      navigate(`/${languageCode}`);
+      // Language code does not exist - navigate back to language home page found in local storage
+      navigate(`/${languageOptions.language}`);
+      i18n.changeLanguage(languageOptions.language);
+      console.log("language code doesn't exist")
     }
-  }, [i18n, langCode, pathname, currentPage, updateLanguageOptions, navigate]);
+  }, [i18n, langCode, pathname, currentPage, navigate, navigationType, setLanguageOptions, languageOptions])
 }

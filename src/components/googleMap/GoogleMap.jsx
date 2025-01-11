@@ -9,7 +9,7 @@ const center = {
 
 export default function GoogleMap({ styles }) {
   return (
-    <div>
+    <div dir="ltr">
       <APIProvider apiKey="">
         <Map
           id="googleMap"

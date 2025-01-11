@@ -2,7 +2,7 @@
 import styles from "./Header.module.css"
 // React
 import { Link, useLocation } from "react-router"
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 // Font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons"
@@ -11,25 +11,21 @@ import Navigation from "../navigation/Navigation"
 import Slider from "../slider/Slider"
 // i18
 import { useTranslation } from "react-i18next"
-// Context
-import { LanguageContext } from "../../context/languageContext"
 
 export default function Header() {
+  const { pathname } = useLocation()
   // Only show Slider component if current page is the index (home page)
   // True by default
-  const { pathname } = useLocation()
   const [currentPageIsIndex, setCurrentPageIsIndex] = useState(true)
-  const { t } = useTranslation("header")
-  const { languageOptions } = useContext(LanguageContext)
-  const { language } = languageOptions
+  const { t, i18n } = useTranslation("header")
 
   useEffect(() => {
-    if (pathname === `/${language}`) {
+    if (pathname === `/${i18n.language}`) {
       setCurrentPageIsIndex(true)
     } else {
       setCurrentPageIsIndex(false)
     }
-  }, [pathname, language])
+  }, [pathname, i18n.language])
 
   return (
     <>
@@ -37,7 +33,7 @@ export default function Header() {
         <div className={styles.top}>
           <div className="container-fluid">
             <div className={["contact_nav", styles.contactNav].join(" ")}>
-              <Link to={`/${language}`} className={styles.topHeaderLinks}>
+              <Link to={`/${i18n.language}`} className={styles.topHeaderLinks}>
                 <div className={styles.iconTextContainer}>
                   <FontAwesomeIcon
                     icon={faPhone}
@@ -46,7 +42,7 @@ export default function Header() {
                 </div>
                 <div>{t("callText")}</div>
               </Link>
-              <Link to={`/${language}`} className={styles.topHeaderLinks}>
+              <Link to={`/${i18n.language}`} className={styles.topHeaderLinks}>
                 <div className={styles.iconTextContainer}>
                   <FontAwesomeIcon
                     icon={faEnvelope}
@@ -68,5 +64,5 @@ export default function Header() {
       </header>
       {currentPageIsIndex && <Slider />}
     </>
-  );
+  )
 }

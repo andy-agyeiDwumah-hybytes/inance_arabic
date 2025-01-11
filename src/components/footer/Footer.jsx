@@ -12,9 +12,7 @@ import { languages } from "../../languages/languageCodes"
 
 export default function Footer() {
   const { t, i18n } = useTranslation("footer")
-  const { languageOptions, updateLanguageOptions } =
-    useContext(LanguageContext)
-  const { language } = languageOptions
+  const { updateLanguageOptions } = useContext(LanguageContext)
   const navigate = useNavigate()
   const { pathname } = useLocation()
   let { langCode } = useParams()
@@ -23,11 +21,14 @@ export default function Footer() {
   const year = date.getFullYear()
 
   const handleChange = (languageCode, writingMode) => {
-    i18n.changeLanguage(languageCode)
-    updateLanguageOptions(languageCode, writingMode)
-    // Replace the existing language code in URL with code selected
-    // in select dropdown
+    console.log("update page: select dropdown")
+    // Get langcode, and navigate to new language page
     navigate(pathname.replace(langCode, languageCode))
+    updateLanguageOptions(languageCode, writingMode)
+    i18n.changeLanguage(languageCode)
+    // Change writing mode
+    document.documentElement.setAttribute("dir", writingMode)
+    console.log("state update")
   }
 
   return (
@@ -54,7 +55,7 @@ export default function Footer() {
               name="language"
               id="language-select"
               className={styles.select}
-              value={language}
+              value={i18n.language}
               onChange={e => {
                 // Find language chosen by user
                 const selectedOption = languages.find(

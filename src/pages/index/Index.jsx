@@ -5,28 +5,22 @@ import Contact from "../../components/contact/Contact"
 import Feature from "../../components/feature/Feature"
 import Professional from "../../components/professional/Professional"
 import Services from "../../components/services/Services"
+import GetInTouch from "../../components/getInTouch/GetInTouch"
+import Footer from "../../components/footer/Footer"
 // React
 import { useLocation, useParams } from "react-router"
 // Hooks
 import useLanguageChange from "../../hooks/useLanguageChange"
-// Languages
-import { languages } from "../../languages/languageCodes"
+// i18
+import { useTranslation } from "react-i18next"
 
 export default function Index() {
-  // Set default to below if langCode param not provided
-  // E.g., a user goes to pathname "/"
-  let { langCode = "notfound" } = useParams()
   const { pathname } = useLocation()
+  const { i18n } = useTranslation()
+  // Add default value when user doesn't provide language code (see custom hook)
+  let { langCode = "home" } = useParams()
 
-  // Check if language code in param is supported by website
-  const languageCodeExists = languages.find(
-    val => val.languageCode === langCode
-  )
-  // If supported get language home page URL
-  // Else, set URL to pathname entered by user
-  const currentPage = languageCodeExists ? `/${langCode}` : pathname
-
-  useLanguageChange(langCode, pathname, currentPage)
+  useLanguageChange(langCode, pathname, pathname)
 
   return (
     <>
@@ -36,6 +30,13 @@ export default function Index() {
       <Services />
       <Client />
       <Contact />
+      {/* Show when pathname matches current page */}
+      {pathname === `/${i18n.language}` && (
+        <>
+          <GetInTouch />
+          <Footer />
+        </>
+      )}
     </>
   )
 }

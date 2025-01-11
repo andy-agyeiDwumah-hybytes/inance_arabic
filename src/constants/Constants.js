@@ -1,4 +1,4 @@
-export const LOCALSTORAGEKEY = "currentTextDirection";
+export const LOCALSTORAGEKEY = "preferredLangOptions";
 
 export const ENGLISHLANGUAGEOPTIONS = {
   language: "en",
