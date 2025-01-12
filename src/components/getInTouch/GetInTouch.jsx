@@ -15,10 +15,10 @@ import {
   faMapMarker,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons"
-import { useContext } from "react"
 // i18
 import { useTranslation } from "react-i18next"
 // React
+import { useContext } from "react"
 import { useLocation } from "react-router"
 // Context
 import { LanguageContext } from "../../context/languageContext"

@@ -1,10 +1,10 @@
 // React
 import { Link, NavLink, useLocation } from "react-router"
-import { useContext } from "react";
+import { useContext } from "react"
 // i18
 import { useTranslation } from "react-i18next"
 // Context
-import { LanguageContext } from "../../context/languageContext";
+import { LanguageContext } from "../../context/languageContext"
 
 export default function Navigation({ styles, t }) {
   const { i18n } = useTranslation()
@@ -17,7 +17,10 @@ export default function Navigation({ styles, t }) {
       className={["navbar", "navbar-expand-lg", styles.nav].join(" ")}
       aria-label="Primary"
     >
-      <Link to={`/${languageCode}`} className="navbar-brand" onClick={e => handleLinkClick(e, pathname, `/${languageCode}`)}>
+      <Link
+        to={`/${languageCode}`}
+        className="navbar-brand"
+        onClick={e => handleLinkClick(e, pathname, `/${languageCode}`)}>
         <span className={styles.inanceText}>Inance</span>
       </Link>
       <button
@@ -77,5 +80,5 @@ export default function Navigation({ styles, t }) {
         </menu>
       </div>
     </nav>
-  );
+  )
 }

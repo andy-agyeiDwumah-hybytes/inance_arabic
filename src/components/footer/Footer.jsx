@@ -1,19 +1,16 @@
 // React
-// import { useContext } from "react"
 import { useLocation, useNavigate, useParams } from "react-router"
 // Styles
 import styles from "./Footer.module.css"
 // i18
 import { useTranslation } from "react-i18next"
-// Context
-// import { LanguageContext } from "../../context/languageContext"
 // Languages
 import { languages } from "../../languages/languageCodes"
+// Constants
 import { LOCALSTORAGEKEY } from "../../constants/Constants"
 
 export default function Footer() {
   const { t, i18n } = useTranslation("footer")
-  // const { updateLanguageOptions } = useContext(LanguageContext)
   const navigate = useNavigate()
   const { pathname } = useLocation()
   let { langCode } = useParams()
@@ -23,13 +20,12 @@ export default function Footer() {
 
   const handleChange = (languageCode, writingMode) => {
     console.log("update page: select dropdown")
-    // Get langcode, and navigate to new language page
-    // updateLanguageOptions(languageCode, writingMode)
+    // Save to local storage
     const updatedOptions = { language: languageCode, textDirection: writingMode }
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(updatedOptions))
+    // Navigate to same page with different language code
     navigate(pathname.replace(langCode, languageCode))
     i18n.changeLanguage(languageCode)
-    // console.log("state update")
   }
 
   return (

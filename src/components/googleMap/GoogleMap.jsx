@@ -9,6 +9,7 @@ const center = {
 
 export default function GoogleMap({ styles }) {
   return (
+    // Language code does not change text. Therefore, stick to "ltr" writing mode
     <div dir="ltr">
       <APIProvider apiKey="">
         <Map

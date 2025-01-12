@@ -28,12 +28,13 @@ export default function Services() {
   const { i18n } = useTranslation()
   const { handleLinkClick } = useContext(LanguageContext)
   let languageCode = i18n.language
+  let currentPage = `/${languageCode}/services`
 
   useLanguageChange(langCode, pathname, `/${langCode}/services`)
 
   return (
     <>
-      {pathname === `/${languageCode}/services` && (
+      {pathname === currentPage && (
         <div className="hero_area">
           <Header />
         </div>
@@ -73,22 +74,19 @@ export default function Services() {
             <Link
               to={`/${languageCode}`}
               className={styles.btnBoxLink}
-              onClick={e =>
-                handleLinkClick(e, pathname, `/${languageCode}`)
-              }
+              onClick={(e) => handleLinkClick(e, pathname, `/${languageCode}`)}
             >
               {t("linkText")}
             </Link>
           </div>
         </div>
       </section>
-      {/* Show when pathname matches current page */}
-      {pathname === `/${languageCode}/services` && (
+      {pathname === currentPage && (
         <>
           <GetInTouch />
           <Footer />
         </>
       )}
     </>
-  );
+  )
 }

@@ -3,7 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // React
 import { Link } from "react-router"
 
-export default function GetInTouchImg({ icon, styles, children, dataContent, languageCode, pathname, onHandleLinkClick }) {
+export default function GetInTouchImg(
+  { icon,
+    styles,
+    children,
+    dataContent,
+    languageCode,
+    pathname,
+    onHandleLinkClick
+  }) {
   return (
     <div
       className={["col-md-4", styles.imgWrapper].join(" ")}

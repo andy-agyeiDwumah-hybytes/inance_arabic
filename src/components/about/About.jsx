@@ -24,6 +24,7 @@ export default function About() {
   let { langCode = "" } = useParams()
   const { handleLinkClick } = useContext(LanguageContext)
   let currentLangCode = i18n.language
+  let currentPage = `/${currentLangCode}/about`
 
   useLanguageChange(langCode, pathname, `/${langCode}/about`)
 
@@ -39,7 +40,7 @@ export default function About() {
 
   return (
     <>
-      {pathname === `/${currentLangCode}/about` && (
+      {pathname === currentPage && (
         <div className="hero_area">
           <Header />
         </div>
@@ -79,8 +80,7 @@ export default function About() {
           </div>
         </div>
       </section>
-      {/* Show when pathname matches current page */}
-      {pathname === `/${currentLangCode}/about` && (
+      {pathname === currentPage && (
         <>
           <GetInTouch />
           <Footer />

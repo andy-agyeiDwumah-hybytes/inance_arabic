@@ -19,12 +19,13 @@ export default function Contact() {
   // as a component rather than page
   let { langCode = "" } = useParams()
   const { pathname } = useLocation()
+  let currentPage = `/${i18n.language}/contact`
 
   useLanguageChange(langCode, pathname, `/${langCode}/contact`)
 
   return (
     <>
-      {pathname === `/${i18n.language}/contact` && (
+      {pathname === currentPage && (
       <div className="hero_area">
         <Header />
       </div>
@@ -47,8 +48,7 @@ export default function Contact() {
           </div>
         </div>
       </section>
-      {/* Show when pathname matches current page */}
-      {pathname === `/${i18n.language}/contact` && (
+      {pathname === currentPage && (
         <>
           <GetInTouch />
           <Footer />

@@ -16,12 +16,9 @@ const Contact = React.lazy(() => import("../../components/contact/Contact"))
 // Hooks
 import useLanguageChange from "../../hooks/useLanguageChange"
 import useOnScreen from "../../hooks/useOnScreen"
-// i18
-import { useTranslation } from "react-i18next"
 
 export default function Index() {
   const { pathname } = useLocation()
-  const { i18n } = useTranslation()
   // Add default value when user doesn't provide language code (see custom hook)
   let { langCode = "home" } = useParams()
   // Start loading Contact component when at least xx% of it is visible on the screen
@@ -59,13 +56,8 @@ export default function Index() {
           )}
         </div>
       </main>
-      {/* Show when pathname matches current page */}
-      {pathname === `/${i18n.language}` && (
-        <>
-          <GetInTouch />
-          <Footer />
-        </>
-      )}
+      <GetInTouch />
+      <Footer />
     </>
   )
 }

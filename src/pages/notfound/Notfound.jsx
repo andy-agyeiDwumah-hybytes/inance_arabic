@@ -20,11 +20,10 @@ export default function Notfound() {
   const { t } = useTranslation("notFound")
   // Show 404 page in user's language
   const { pathname } = useLocation()
-  const currentPage = pathname
   // Get language code
   const langCode = pathname.split("/")[1]
 
-  useLanguageChange(langCode, pathname, currentPage)
+  useLanguageChange(langCode, pathname, pathname)
 
   return (
     <>

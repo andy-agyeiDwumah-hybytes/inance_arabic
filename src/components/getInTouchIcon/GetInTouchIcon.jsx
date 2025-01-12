@@ -3,7 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // React
 import { Link } from "react-router"
 
-export default function GetInTouchIcon({ icon, styles, languageCode, pathname, onHandleLinkClick }) {
+export default function GetInTouchIcon(
+  { icon,
+    styles,
+    languageCode,
+    pathname,
+    onHandleLinkClick }) {
   return (
     <div>
       <Link
