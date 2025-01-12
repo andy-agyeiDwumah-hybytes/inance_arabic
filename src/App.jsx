@@ -21,16 +21,46 @@ import i18n from "./i18n"
 import { LanguageContext } from "./context/languageContext"
 // Constants
 import { LOCALSTORAGEKEY, ENGLISHLANGUAGEOPTIONS } from "./constants/Constants"
+// Utils
+import EnsureNoTrailingSlash from "./utils/routeUtils"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-    {/* Language code is optional */}
-    {/* See 'Index.jsx' and custom hook for more details */}
-      <Route path="/:langCode?" element={<Index />} />
-      <Route path="/:langCode/about" element={<About />} />
-      <Route path="/:langCode/services" element={<Services />} />
-      <Route path="/:langCode/contact" element={<Contact />} />
+      {/* Language code is optional */}
+      {/* See 'Index.jsx' and custom hook for more details */}
+      <Route
+        path="/:langCode?"
+        element={
+          <EnsureNoTrailingSlash>
+            <Index />
+          </EnsureNoTrailingSlash>
+        }
+      />
+      <Route
+        path="/:langCode/about"
+        element={
+          <EnsureNoTrailingSlash>
+            <About />
+          </EnsureNoTrailingSlash>
+        }
+      />
+      <Route
+        path="/:langCode/services"
+        element={
+          <EnsureNoTrailingSlash>
+            <Services />
+          </EnsureNoTrailingSlash>
+        }
+      />
+      <Route
+        path="/:langCode/contact"
+        element={
+          <EnsureNoTrailingSlash>
+            <Contact />
+          </EnsureNoTrailingSlash>
+        }
+      />
       <Route path="*" element={<Notfound />} />
     </>
   )
@@ -49,16 +79,6 @@ export default function App() {
   }
   const [languageOptions, setLanguageOptions] = useState(getInitialLanguageOptions)
 
-  // wrap in useCallback to ensure it remains stable on rerenders
-  // const updateLanguageOptions = useCallback((language, textDirection) => {
-  //   // Store new language options in local storage
-  //   const updatedOptions = { language: language, textDirection: textDirection }
-  //   localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(updatedOptions))
-  //   // Update current language options
-  //   setLanguageOptions(updatedOptions)
-  //   console.log("language changed")
-  // }, [])
-
   // Prevents scrollbar flicker
   const handleLinkClick = useCallback((e, pathname, homePage) => {
     if (pathname === homePage) {
@@ -69,7 +89,6 @@ export default function App() {
   const appContext = {
     languageOptions,
     setLanguageOptions,
-    // updateLanguageOptions,
     handleLinkClick
   }
 
@@ -77,5 +96,5 @@ export default function App() {
     <LanguageContext.Provider value={appContext}>
       <RouterProvider router={router} />
     </LanguageContext.Provider>
-  )
+  );
 }
