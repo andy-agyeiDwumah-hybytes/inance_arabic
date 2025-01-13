@@ -4,6 +4,7 @@ import GoogleMap from "../googleMap/GoogleMap"
 import GetInTouch from "../getInTouch/GetInTouch"
 import Footer from "../footer/Footer"
 import Header from "../header/Header"
+import CanonicalTags from "../canonicalTags/CanonicalTags"
 // Styles
 import styles from "./Contact.module.css"
 // i18
@@ -26,9 +27,12 @@ export default function Contact() {
   return (
     <>
       {pathname === currentPage && (
-      <div className="hero_area">
-        <Header />
-      </div>
+        <>
+          <CanonicalTags pagePath={currentPage} extension="contact" />
+          <div className="hero_area">
+            <Header />
+          </div>
+        </>
       )}
       <section
         className="contact_section layout_padding"
@@ -55,5 +59,5 @@ export default function Contact() {
         </>
       )}
     </>
-  );
+  )
 }

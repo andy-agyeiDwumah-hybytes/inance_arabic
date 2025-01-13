@@ -3,6 +3,7 @@ import Service from "../service/Service"
 import GetInTouch from "../getInTouch/GetInTouch"
 import Footer from "../footer/Footer"
 import Header from "../header/Header"
+import CanonicalTags from "../canonicalTags/CanonicalTags"
 // Images
 import maintenanceImg from "../../assets/s1.png"
 import electricalImg from "../../assets/s2.png"
@@ -35,9 +36,12 @@ export default function Services() {
   return (
     <>
       {pathname === currentPage && (
-        <div className="hero_area">
-          <Header />
-        </div>
+        <>
+          <CanonicalTags pagePath={currentPage} key={pathname} extension="services" />
+          <div className="hero_area">
+            <Header />
+          </div>
+        </>
       )}
       <section
         className={["layout_padding", styles.section].join(" ")}
@@ -74,7 +78,7 @@ export default function Services() {
             <Link
               to={`/${languageCode}`}
               className={styles.btnBoxLink}
-              onClick={(e) => handleLinkClick(e, pathname, `/${languageCode}`)}
+              onClick={e => handleLinkClick(e, pathname, `/${languageCode}`)}
             >
               {t("linkText")}
             </Link>
@@ -88,5 +92,5 @@ export default function Services() {
         </>
       )}
     </>
-  )
+  );
 }

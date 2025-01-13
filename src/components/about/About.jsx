@@ -11,6 +11,7 @@ import useLanguageChange from "../../hooks/useLanguageChange"
 import GetInTouch from "../getInTouch/GetInTouch"
 import Footer from "../footer/Footer"
 import Header from "../header/Header"
+import CanonicalTags from "../canonicalTags/CanonicalTags"
 // Context
 import { LanguageContext } from "../../context/languageContext"
 
@@ -23,27 +24,30 @@ export default function About() {
   // as a component rather than page
   let { langCode = "" } = useParams()
   const { handleLinkClick } = useContext(LanguageContext)
-  let currentLangCode = i18n.language
-  let currentPage = `/${currentLangCode}/about`
+  let languageCode = i18n.language
+  let currentPage = `/${languageCode}/about`
 
   useLanguageChange(langCode, pathname, `/${langCode}/about`)
 
   useEffect(() => {
-    if (pathname === `/${currentLangCode}`) {
+    if (pathname === `/${languageCode}`) {
       setLayoutClassName("layout_padding-bottom")
-    } else if (pathname === `/${currentLangCode}/about`) {
+    } else if (pathname === `/${languageCode}/about`) {
       setLayoutClassName("layout_padding")
     } else {
       return
     }
-  }, [pathname, currentLangCode])
+  }, [pathname, languageCode])
 
   return (
     <>
       {pathname === currentPage && (
-        <div className="hero_area">
-          <Header />
-        </div>
+        <>
+          <CanonicalTags pagePath={currentPage} extension="about" />
+          <div className="hero_area">
+            <Header />
+          </div>
+        </>
       )}
       <section
         className={["about_section", layoutClassName].join(" ")}
@@ -58,9 +62,11 @@ export default function About() {
                 </h2>
                 <p className="about-para">{t("paragraph")}</p>
                 <Link
-                  to={`/${currentLangCode}`}
+                  to={`/${languageCode}`}
                   className="about-link"
-                  onClick={e => handleLinkClick(e, pathname, `/${currentLangCode}`)}
+                  onClick={(e) =>
+                    handleLinkClick(e, pathname, `/${languageCode}`)
+                  }
                 >
                   {t("linkText")}
                 </Link>
@@ -87,5 +93,5 @@ export default function About() {
         </>
       )}
     </>
-  );
+  )
 }

@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from "react-router"
 import { useCallback, useState } from "react"
+import { HeadProvider } from "react-head"
 // Components
 import About from "./components/about/About"
 import Services from "./components/services/Services"
@@ -93,8 +94,10 @@ export default function App() {
   }
 
   return (
-    <LanguageContext.Provider value={appContext}>
-      <RouterProvider router={router} />
-    </LanguageContext.Provider>
+    <HeadProvider>
+      <LanguageContext.Provider value={appContext}>
+        <RouterProvider router={router} />
+      </LanguageContext.Provider>
+    </HeadProvider>
   );
 }
