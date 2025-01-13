@@ -3,17 +3,12 @@ import styles from "./Professional.module.css"
 // Images
 import professionalImg from "../../assets/professional-img.png"
 // React
-import { Link, useLocation } from "react-router"
-import { useContext } from "react"
+import { Link } from "react-router"
 // i18
 import { useTranslation } from "react-i18next"
-// Context
-import { LanguageContext } from "../../context/languageContext"
 
 export default function Professional() {
   const { t, i18n } = useTranslation("professional")
-  const { handleLinkClick } = useContext(LanguageContext)
-  const { pathname } = useLocation()
   let languageCode = i18n.language
 
   return (
@@ -48,11 +43,8 @@ export default function Professional() {
               </h2>
               <p className={styles.para}>{t("paragraph")}</p>
               <Link
-                to={`/${languageCode}`}
+                to={`/${languageCode}/services`}
                 className={styles.link}
-                onClick={e =>
-                  handleLinkClick(e, pathname, `/${languageCode}`)
-                }
               >
                 {t("linkText")}
               </Link>

@@ -1,6 +1,6 @@
 // React
 import { Link, useLocation, useParams } from "react-router"
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 // Images
 import aboutImg from "../../assets/about-img.jpg"
 // i18
@@ -12,8 +12,6 @@ import GetInTouch from "../getInTouch/GetInTouch"
 import Footer from "../footer/Footer"
 import Header from "../header/Header"
 import CanonicalTags from "../canonicalTags/CanonicalTags"
-// Context
-import { LanguageContext } from "../../context/languageContext"
 
 export default function About() {
   // Classname differs depending on the path
@@ -23,7 +21,6 @@ export default function About() {
   // Add default value to avoid error when mounted
   // as a component rather than page
   let { langCode = "" } = useParams()
-  const { handleLinkClick } = useContext(LanguageContext)
   let languageCode = i18n.language
   let currentPage = `/${languageCode}/about`
 
@@ -61,13 +58,7 @@ export default function About() {
                   {t("heading")}
                 </h2>
                 <p className="about-para">{t("paragraph")}</p>
-                <Link
-                  to={`/${languageCode}`}
-                  className="about-link"
-                  onClick={(e) =>
-                    handleLinkClick(e, pathname, `/${languageCode}`)
-                  }
-                >
+                <Link to={currentPage} className="about-link">
                   {t("linkText")}
                 </Link>
               </div>
@@ -93,5 +84,5 @@ export default function About() {
         </>
       )}
     </>
-  )
+  );
 }

@@ -1,19 +1,14 @@
 // React
-import { Link, useLocation } from "react-router"
-import { useContext } from "react"
+import { Link } from "react-router"
 // Images
 import sliderImg from "../../assets/slider-img.png"
 // Styles
 import styles from "./Slider.module.css"
 // i18
 import { useTranslation } from "react-i18next"
-// Context
-import { LanguageContext } from "../../context/languageContext"
 
 export default function Slider() {
   const { t, i18n } = useTranslation("hero")
-  const { pathname } = useLocation()
-  const { handleLinkClick } = useContext(LanguageContext)
   let homePage = `/${i18n.language}`
 
   return (
@@ -31,7 +26,7 @@ export default function Slider() {
               <Link
                 href={homePage}
                 className={styles.link}
-                onClick={e => handleLinkClick(e, pathname, homePage)}
+                to={`/${i18n.language}/contact`}
               >
                 {t("contactUsLinkText")}
               </Link>

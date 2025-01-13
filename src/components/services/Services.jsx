@@ -12,13 +12,10 @@ import plumbingImg from "../../assets/s3.png"
 import styles from "./Services.module.css"
 // React
 import { Link, useLocation, useParams } from "react-router"
-import { useContext } from "react"
 // i18
 import { useTranslation } from "react-i18next"
 // Hooks
 import useLanguageChange from "../../hooks/useLanguageChange"
-// Context
-import { LanguageContext } from "../../context/languageContext"
 
 export default function Services() {
   const { t } = useTranslation("services")
@@ -27,7 +24,6 @@ export default function Services() {
   let { langCode = "" } = useParams()
   const { pathname } = useLocation()
   const { i18n } = useTranslation()
-  const { handleLinkClick } = useContext(LanguageContext)
   let languageCode = i18n.language
   let currentPage = `/${languageCode}/services`
 
@@ -76,9 +72,8 @@ export default function Services() {
           </div>
           <div className={styles.btnBox}>
             <Link
-              to={`/${languageCode}`}
+              to={`/${languageCode}/services`}
               className={styles.btnBoxLink}
-              onClick={e => handleLinkClick(e, pathname, `/${languageCode}`)}
             >
               {t("linkText")}
             </Link>
