@@ -27,7 +27,7 @@ export default function Index() {
   // Tracks whether the Contact component has already been loaded
   // Remain in DOM after it has loaded
   const [hasContactLoaded, setHasContactLoaded] = useState(false)
-  const { i18n } = useTranslation("header")
+  const { i18n } = useTranslation()
   let languageCode = i18n.language
   let currentPage = `/${languageCode}`
 
