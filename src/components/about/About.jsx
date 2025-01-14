@@ -40,7 +40,10 @@ export default function About() {
     <>
       {pathname === currentPage && (
         <>
-          <CanonicalTags pagePath={currentPage} extension="about" />
+          <CanonicalTags
+            pagePath={currentPage}
+            extension="about"
+          />
           <div className="hero_area">
             <Header />
           </div>
@@ -84,5 +87,5 @@ export default function About() {
         </>
       )}
     </>
-  );
+  )
 }

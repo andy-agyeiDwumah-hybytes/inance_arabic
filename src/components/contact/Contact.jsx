@@ -28,7 +28,10 @@ export default function Contact() {
     <>
       {pathname === currentPage && (
         <>
-          <CanonicalTags pagePath={currentPage} extension="contact" />
+          <CanonicalTags
+            pagePath={currentPage}
+            extension="contact"
+          />
           <div className="hero_area">
             <Header />
           </div>
@@ -59,5 +62,5 @@ export default function Contact() {
         </>
       )}
     </>
-  )
+  );
 }

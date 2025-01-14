@@ -33,7 +33,10 @@ export default function Services() {
     <>
       {pathname === currentPage && (
         <>
-          <CanonicalTags pagePath={currentPage} key={pathname} extension="services" />
+          <CanonicalTags
+            pagePath={currentPage}
+            extension="services"
+          />
           <div className="hero_area">
             <Header />
           </div>
@@ -87,5 +90,5 @@ export default function Services() {
         </>
       )}
     </>
-  );
+  )
 }

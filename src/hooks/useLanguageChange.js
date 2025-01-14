@@ -71,6 +71,7 @@ export default function useLanguageChange(langCode, pathname, currentPage) {
         }
       } else {
         console.log("Link was clicked. No update (custom hook).");
+        window.scrollTo(0, 0);
       }
     } else {
       navigate(`/${languageOptions.language}`);

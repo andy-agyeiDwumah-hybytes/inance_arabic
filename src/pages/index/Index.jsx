@@ -12,7 +12,6 @@ import GetInTouch from "../../components/getInTouch/GetInTouch"
 import Footer from "../../components/footer/Footer"
 import Header from "../../components/header/Header"
 import CanonicalTags from "../../components/canonicalTags/CanonicalTags"
-// import Contact from "../../components/contact/Contact"
 // Lazy load Contact component (Fixes google map bug)
 const Contact = React.lazy(() => import("../../components/contact/Contact"))
 // Hooks
@@ -28,7 +27,7 @@ export default function Index() {
   // Tracks whether the Contact component has already been loaded
   // Remain in DOM after it has loaded
   const [hasContactLoaded, setHasContactLoaded] = useState(false)
-  const { i18n } = useTranslation()
+  const { i18n } = useTranslation("header")
   let languageCode = i18n.language
   let currentPage = `/${languageCode}`
 
@@ -57,7 +56,6 @@ export default function Index() {
         <Professional />
         <Services />
         <Client />
-        {/* <Contact /> */}
         <div ref={contactRef}>
           {hasContactLoaded && (
             <Suspense fallback={<div>Loading...</div>}>
