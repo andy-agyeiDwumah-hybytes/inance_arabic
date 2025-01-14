@@ -66,6 +66,7 @@ export default function Client() {
               numOfStars={5}
               styles={styles}
               textDirection={i18n.dir()}
+              imgAltTag={t("imgAltTag")}
             >
               {t("clientInfoOne")}
             </ClientInfo>
@@ -75,6 +76,7 @@ export default function Client() {
               numOfStars={5}
               styles={styles}
               textDirection={i18n.dir()}
+              imgAltTag={t("imgAltTag")}
             >
               {t("clientInfoTwo")}
             </ClientInfo>
@@ -84,6 +86,7 @@ export default function Client() {
               numOfStars={5}
               styles={styles}
               textDirection={i18n.dir()}
+              imgAltTag={t("imgAltTag")}
             >
               {t("clientInfoThree")}
             </ClientInfo>
@@ -93,6 +96,7 @@ export default function Client() {
               numOfStars={5}
               styles={styles}
               textDirection={i18n.dir()}
+              imgAltTag={t("imgAltTag")}
             >
               {t("clientInfoFour")}
             </ClientInfo>
