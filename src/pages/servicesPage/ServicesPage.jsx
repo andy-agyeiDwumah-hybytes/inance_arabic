@@ -12,9 +12,7 @@ import { useTranslation } from "react-i18next"
 import useLanguageChange from "../../hooks/useLanguageChange"
 
 export default function ServicesPage() {
-  // Add default value to avoid error when shown
-  // as a component rather than page
-  let { langCode = "" } = useParams()
+  let { langCode } = useParams()
   const { pathname } = useLocation()
   const { t, i18n } = useTranslation("services")
   let languageCode = i18n.language

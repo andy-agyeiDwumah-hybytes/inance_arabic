@@ -17,9 +17,7 @@ export default function AboutPage() {
   const { pathname } = useLocation()
   const [layoutClassName, setLayoutClassName] = useState("")
   const { t, i18n } = useTranslation("about")
-  // Add default value to avoid error when mounted
-  // as a component rather than page
-  let { langCode = "" } = useParams()
+  let { langCode } = useParams()
   let languageCode = i18n.language
   let currentPage = `/${languageCode}/about`
 

@@ -1,3 +1,4 @@
+// React
 import { useState, useEffect, useRef } from "react";
 
 // Tracks the visibility of elements on the screen

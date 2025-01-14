@@ -13,9 +13,7 @@ import useLanguageChange from "../../hooks/useLanguageChange"
 
 export default function ContactPage() {
   const { t, i18n } = useTranslation("contact")
-  // Add default value to avoid error when shown
-  // as a component rather than page
-  let { langCode = "" } = useParams()
+  let { langCode } = useParams()
   const { pathname } = useLocation()
   let currentPage = `/${i18n.language}/contact`
 

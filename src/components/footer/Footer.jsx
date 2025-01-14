@@ -15,11 +15,8 @@ export default function Footer() {
   const { pathname } = useLocation()
   let { langCode } = useParams()
 
-  const date = new Date()
-  const year = date.getFullYear()
-
   const handleChange = (languageCode, writingMode) => {
-    console.log("update page: select dropdown")
+    console.log("Change language. No state update (select dropdown)")
     // Save to local storage
     const updatedOptions = { language: languageCode, textDirection: writingMode }
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(updatedOptions))
@@ -34,7 +31,7 @@ export default function Footer() {
         <div className="row">
           <div className="col-md-12">
             <p className={styles.text}>
-              &copy; <span className={styles.displayDateYear}>{year}</span>{" "}
+              &copy; <span className={styles.displayDateYear}>{new Date().getFullYear()}</span>{" "}
               {t("copyrightText")}{" "}
               <a href="https://html.design/">{t("freeHtmlTemplatesText")}</a>
             </p>
