@@ -8,22 +8,22 @@ export default function useOnScreen(options) {
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
-      setIsIntersecting(entry.isIntersecting);
+      // setIsIntersecting(entry.isIntersecting);
+       if (entry.isIntersecting) {
+         setIsIntersecting(true); // Only set true once
+         observer.disconnect(); // Stop observing once visible
+       }
     }, options);
 
     // Store current ref in a variable
     const currenRef = ref.current;
 
     // Start observing if ref is valid
-    if (currenRef) {
-      observer.observe(currenRef);
-    }
+    if (currenRef) observer.observe(currenRef);
 
     // Cleanup the observer when the component is unmounted or when ref changes
     return () => {
-      if (currenRef) {
-        observer.unobserve(currenRef);
-      }
+      if (currenRef) observer.unobserve(currenRef);
     };
   }, [options]); // Run only when options change
 
