@@ -36,12 +36,12 @@ export default function useLanguageChange(langCode, pathname, currentPage) {
       if (navigationType === "POP") {
         console.log(
           "Page refresh or back/forward navigation detected. " +
-          "Updating page (custom hook)."
+          "Updating page (custom hook)"
         );
         if (langCode === "home") {
           console.log(
             "No language code provided. Navigate to " +
-            "language home page (custom hook)."
+            "language home page (custom hook)"
           );
           // Value comes from local storage (see App.jsx)
           navigate(`/${languageOptions.language}`);
@@ -50,7 +50,7 @@ export default function useLanguageChange(langCode, pathname, currentPage) {
           console.log(
             "Local storage key not equal to language code. Save " +
             "language code to local storage. Update state. Change " +
-            "language (custom hook)."
+            "language (custom hook)"
           );
           const updatedOptions = {
             language: langCode,
@@ -65,12 +65,12 @@ export default function useLanguageChange(langCode, pathname, currentPage) {
         } else {
           console.log(
             "Local storage key equal to language code. " +
-            "Change language (custom hook)."
+            "Change language (custom hook)"
           );
           i18n.changeLanguage(languageCodeExists.languageCode);
         }
       } else {
-        console.log("Link was clicked. No update (custom hook).");
+        console.log("No update (custom hook)");
         window.scrollTo(0, 0);
       }
     } else {
@@ -78,7 +78,7 @@ export default function useLanguageChange(langCode, pathname, currentPage) {
       i18n.changeLanguage(languageOptions.language);
       console.log(
         "Language code doesn't exist. Navigate to language home " +
-        "page found in local storage. Change language(custom hook)."
+        "page found in local storage. Change language(custom hook)"
       );
     }
   }, [
