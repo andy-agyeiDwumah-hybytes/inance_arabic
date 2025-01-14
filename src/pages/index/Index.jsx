@@ -3,20 +3,21 @@ import { Suspense, useEffect, useState, lazy } from "react"
 import { useLocation, useParams } from "react-router"
 import { useTranslation } from "react-i18next"
 // Components
-import About from "../../components/about/About"
 import Client from "../../components/client/Client"
 import Feature from "../../components/feature/Feature"
 import Professional from "../../components/professional/Professional"
-import Services from "../../components/services/Services"
 import GetInTouch from "../../components/getInTouch/GetInTouch"
 import Footer from "../../components/footer/Footer"
 import Header from "../../components/header/Header"
 import CanonicalTags from "../../components/canonicalTags/CanonicalTags"
 // Lazy load Contact component (Fixes google map bug)
-const Contact = lazy(() => import("../../components/contact/Contact"))
+const ContactPage = lazy(() => import("../contactPage/ContactPage"))
 // Hooks
 import useLanguageChange from "../../hooks/useLanguageChange"
 import useOnScreen from "../../hooks/useOnScreen"
+// Pages
+import AboutPage from "../aboutPage/AboutPage"
+import ServicesPage from "../servicesPage/ServicesPage"
 
 export default function Index() {
   const { pathname } = useLocation()
@@ -52,14 +53,14 @@ export default function Index() {
       )}
       <main>
         <Feature />
-        <About />
+        <AboutPage />
         <Professional />
-        <Services />
+        <ServicesPage />
         <Client />
         <div ref={contactRef}>
           {hasContactLoaded && (
             <Suspense fallback={<div>Loading...</div>}>
-              <Contact />
+              <ContactPage />
             </Suspense>
           )}
         </div>

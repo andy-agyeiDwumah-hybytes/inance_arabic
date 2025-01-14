@@ -7,13 +7,12 @@ import {
 } from "react-router"
 import { useCallback, useState } from "react"
 import { HeadProvider } from "react-head"
-// Components
-import About from "./components/about/About"
-import Services from "./components/services/Services"
-import Contact from "./components/contact/Contact"
 // Pages
 import Notfound from "./pages/notfound/Notfound"
 import Index from "./pages/index"
+import AboutPage from "./pages/aboutPage/AboutPage"
+import ServicesPage from "./pages/servicesPage/ServicesPage"
+import ContactPage from "./pages/contactPage/ContactPage"
 // Make JQuery available to entire project
 import * as $ from "jquery"
 // i18n
@@ -24,6 +23,7 @@ import { LanguageContext } from "./context/languageContext"
 import { LOCALSTORAGEKEY, ENGLISHLANGUAGEOPTIONS } from "./constants/Constants"
 // Utils
 import EnsureNoTrailingSlash from "./utils/routeUtils"
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,7 +42,7 @@ const router = createBrowserRouter(
         path="/:langCode/about"
         element={
           <EnsureNoTrailingSlash>
-            <About />
+            <AboutPage />
           </EnsureNoTrailingSlash>
         }
       />
@@ -50,7 +50,7 @@ const router = createBrowserRouter(
         path="/:langCode/services"
         element={
           <EnsureNoTrailingSlash>
-            <Services />
+            <ServicesPage />
           </EnsureNoTrailingSlash>
         }
       />
@@ -58,7 +58,7 @@ const router = createBrowserRouter(
         path="/:langCode/contact"
         element={
           <EnsureNoTrailingSlash>
-            <Contact />
+            <ContactPage />
           </EnsureNoTrailingSlash>
         }
       />
