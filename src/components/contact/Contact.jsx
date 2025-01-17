@@ -4,7 +4,7 @@ import GoogleMap from "../googleMap/GoogleMap"
 // Styles
 import styles from "./Contact.module.css"
 
-export default function Contact({ t }) {
+export default function Contact({ t, i18n }) {
   return (
     <>
       <section
@@ -17,7 +17,7 @@ export default function Contact({ t }) {
           </div>
           <div className="row">
             <div className="col-md-6">
-              <ContactForm styles={styles} t={t} />
+              <ContactForm styles={styles} t={t} i18n={i18n} />
             </div>
             <div className="col-md-6">
               <GoogleMap styles={styles} />

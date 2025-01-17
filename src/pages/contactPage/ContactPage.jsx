@@ -28,15 +28,15 @@ export default function ContactPage() {
             <Header />
           </div>
           <main>
-            <Contact t={t} />
+            <Contact t={t} i18n={i18n} />
           </main>
           <GetInTouch />
           <Footer />
         </>
       ) : (
         // Do not show main tag when pathname doesn't match current page
-        <Contact t={t} />
+        <Contact t={t} i18n={i18n} />
       )}
     </>
-  )
+  );
 }

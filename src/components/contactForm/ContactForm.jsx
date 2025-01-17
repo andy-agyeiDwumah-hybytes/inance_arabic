@@ -1,7 +1,7 @@
 // React
 import { useRef, useState } from "react";
 
-export default function ContactForm({ styles, t }) {
+export default function ContactForm({ styles, t, i18n }) {
   const formRef = useRef()
 
   const [name, setName] = useState("")
@@ -46,9 +46,10 @@ export default function ContactForm({ styles, t }) {
         />
       </div>
       <div>
-        {/* I may need to override the default behaviour here depending on language */}
+        {/* Override the default behaviour here depending on writing mode */}
         <input
           type="tel"
+          dir={i18n.dir() === "ltr" ? "ltr" : "rtl"}
           placeholder={t("phonePlaceholder")}
           className={styles.input}
           aria-label="Phone Number"
