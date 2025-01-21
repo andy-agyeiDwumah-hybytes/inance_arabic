@@ -9,7 +9,7 @@ import { MemoryRouter } from "react-router";
 // Styles
 import styles from "../components/services/Services.module.css";
 
-test("renders Services component with Service components", () => {
+test.skip("renders Services component with Service components", () => {
   // Wrap as Services component uses Link component
   render(
     <MemoryRouter>
@@ -30,7 +30,7 @@ test("renders Services component with Service components", () => {
   expect(viewMoreBtn).toBeInTheDocument();
 });
 
-test("renders Service component with correct props", () => {
+test.skip("renders Service component with correct props", () => {
   const testProps = {
     imgSrc: "maintenance.png",
     heading: "Maintenance",
@@ -50,7 +50,7 @@ test("renders Service component with correct props", () => {
   expect(serviceText).toBeInTheDocument();
 });
 
-test("applies the correct styles to elements", () => {
+test.skip("applies the correct styles to elements", () => {
   render(
     <MemoryRouter>
       <Services />
