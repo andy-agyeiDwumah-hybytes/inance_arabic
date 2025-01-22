@@ -18,6 +18,8 @@ import useOnScreen from "../../hooks/useOnScreen"
 // Pages
 import AboutPage from "../aboutPage/AboutPage"
 import ServicesPage from "../servicesPage/ServicesPage"
+// React Google Analytics 4
+import ReactGA from "react-ga4"
 
 export default function Index() {
   const { pathname } = useLocation()
@@ -38,6 +40,17 @@ export default function Index() {
       setHasContactLoaded(true)
     }
   }, [isContactVisible, hasContactLoaded])
+
+  useEffect(() => {
+    // Pass GA4 measurement ID, allows library to send data to my GA account
+    ReactGA.initialize(import.meta.env.VITE_GOOGLE_MEASUREMENT_ID)
+    // sends a 'pageview' event (page load or user navigation)
+    ReactGA.send({
+      hitType: "pageview",
+      page: currentPage,
+      title: `Home Page - ${languageCode}`,
+    })
+  }, [currentPage, languageCode])
 
   useLanguageChange(langCode, pathname, pathname)
 
@@ -68,5 +81,5 @@ export default function Index() {
       <GetInTouch />
       <Footer />
     </>
-  );
+  )
 }

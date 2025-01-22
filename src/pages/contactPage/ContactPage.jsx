@@ -8,8 +8,11 @@ import Contact from "../../components/contact/Contact"
 import { useTranslation } from "react-i18next"
 // React
 import { useLocation, useParams } from "react-router"
+import { useEffect } from "react"
 // Hooks
 import useLanguageChange from "../../hooks/useLanguageChange"
+// React Google Analytics 4
+import ReactGA from "react-ga4"
 
 export default function ContactPage() {
   const { t, i18n } = useTranslation("contact")
@@ -18,6 +21,19 @@ export default function ContactPage() {
   let currentPage = `/${i18n.language}/contact`
 
   useLanguageChange(langCode, pathname, `/${langCode}/contact`)
+
+  useEffect(() => {
+    if (pathname === currentPage) {
+      // Pass GA4 measurement ID, allows library to send data to my GA account
+      ReactGA.initialize(import.meta.env.VITE_GOOGLE_MEASUREMENT_ID)
+      // sends a 'pageview' event (page load or user navigation)
+      ReactGA.send({
+        hitType: "pageview",
+        page: currentPage,
+        title: `Contact Page - ${i18n.language}`,
+      })
+    }
+  }, [currentPage, pathname, i18n.language])
 
   return (
     <>
@@ -38,5 +54,5 @@ export default function ContactPage() {
         <Contact t={t} i18n={i18n} />
       )}
     </>
-  );
+  )
 }

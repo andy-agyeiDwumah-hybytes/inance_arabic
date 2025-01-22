@@ -11,6 +11,8 @@ import CanonicalTags from "../../components/canonicalTags/CanonicalTags"
 import GetInTouch from "../../components/getInTouch/GetInTouch"
 import Footer from "../../components/footer/Footer"
 import About from "../../components/about/About"
+// React Google Analytics 4
+import ReactGA from "react-ga4"
 
 export default function AboutPage() {
   // Classname differs depending on the path
@@ -30,6 +32,19 @@ export default function AboutPage() {
       setLayoutClassName("layout_padding")
     }
   }, [pathname, languageCode])
+
+  useEffect(() => {
+    if (pathname === currentPage) {
+      // Pass GA4 measurement ID, allows library to send data to my GA account
+      ReactGA.initialize(import.meta.env.VITE_GOOGLE_MEASUREMENT_ID)
+      // sends a 'pageview' event (page load or user navigation)
+      ReactGA.send({
+        hitType: "pageview",
+        page: currentPage,
+        title: `About Page - ${languageCode}`,
+      })
+    }
+  }, [currentPage, pathname, languageCode])
 
   return (
     <>

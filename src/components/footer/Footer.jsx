@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next"
 import { languages } from "../../languages/languageCodes"
 // Constants
 import { LOCALSTORAGEKEY } from "../../constants/Constants"
+// React Google Analytics 4
+import ReactGA from "react-ga4"
 
 export default function Footer() {
   const { t, i18n } = useTranslation("footer")
@@ -16,13 +18,22 @@ export default function Footer() {
   let { langCode } = useParams()
 
   const handleChange = (languageCode, writingMode) => {
-    console.log("Change language. No state update (select dropdown)")
+    console.log("Change language. No state update (select dropdown)");
     // Save to local storage
-    const updatedOptions = { language: languageCode, textDirection: writingMode }
-    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(updatedOptions))
+    const updatedOptions = {
+      language: languageCode,
+      textDirection: writingMode,
+    };
+    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(updatedOptions));
+    // Track the language change event in Google Analytics
+    ReactGA.event({
+      category: "language_change",
+      action: "language_select",
+      label: languageCode.toUpperCase(),
+    });
     // Navigate to same page with different language code
-    navigate(pathname.replace(langCode, languageCode))
-    i18n.changeLanguage(languageCode)
+    navigate(pathname.replace(langCode, languageCode));
+    i18n.changeLanguage(languageCode);
   }
 
   return (

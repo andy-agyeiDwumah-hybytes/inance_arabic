@@ -24,5 +24,8 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: "./setupTests.jsx",
     css: true
+  },
+  server: {
+    port: 5000,
   }
 });
