@@ -26,11 +26,10 @@ export default function Footer() {
     };
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(updatedOptions));
     // Track the language change event in Google Analytics
-    ReactGA.event({
-      category: "language_change",
-      action: "language_select",
-      label: languageCode.toUpperCase(),
-    });
+    ReactGA.event("select_content", {
+      content_type: "language",
+      content_id: languageCode
+    })
     // Navigate to same page with different language code
     navigate(pathname.replace(langCode, languageCode));
     i18n.changeLanguage(languageCode);
