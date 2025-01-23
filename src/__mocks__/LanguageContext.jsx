@@ -1,6 +1,13 @@
 import { vi } from "vitest"
 
-export const mockContext = {
+const englishMockContext = {
   languageOptions: { language: "en", textDirection: "ltr" },
   setLanguageOptions: vi.fn(),
 };
+
+const arabicMockContext = {
+  languageOptions: { language: "ar", textDirection: "rtl" },
+  setLanguageOptions: vi.fn(),
+};
+
+export { englishMockContext, arabicMockContext };

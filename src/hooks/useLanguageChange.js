@@ -82,7 +82,7 @@ export default function useLanguageChange(langCode, pathname, currentPage) {
       i18n.changeLanguage(languageOptions.language);
       console.log(
         "Language code doesn't exist. Navigate to language home " +
-          "page found in local storage. Change language(custom hook)"
+          "page found in local storage. Change language (custom hook)"
       );
     }
   }, [
