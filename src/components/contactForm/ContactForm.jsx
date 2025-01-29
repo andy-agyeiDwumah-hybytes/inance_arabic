@@ -98,6 +98,7 @@ export default function ContactForm({ styles, t, i18n }) {
           placeholder={t("messagePlaceholder")}
           id="message"
           className={styles.messageBox}
+          minLength={100}
           aria-label="message"
           value={message}
           onChange={e => setMessage(e.target.value)}
