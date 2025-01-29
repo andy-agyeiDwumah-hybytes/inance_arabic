@@ -1,5 +1,8 @@
 // React
 import { useRef, useState } from "react";
+// Firebase
+import { firestore } from "../../firebase";
+import { addDoc, collection } from "firebase/firestore";
 
 export default function ContactForm({ styles, t, i18n }) {
   const formRef = useRef()
@@ -9,20 +12,34 @@ export default function ContactForm({ styles, t, i18n }) {
   const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
+    // Get data
     const formData = new FormData(formRef.current)
     const name = formData.get("name")
     const phoneNumber = formData.get("phone-number")
     const email = formData.get("email")
     const message = formData.get("message")
 
-    console.log(`Name: ${name} ` +
-      `\nPhone number: ${phoneNumber}` +
-      `\nEmail: ${email} ` +
-      `\nMessage: ${message}`) 
-    alert("Form was successfully submitted! Check the console.");
-  
+    // Send email to mail collection (will create if it does not exist)
+    try {
+      await addDoc(collection(firestore, "mail"), {
+        to: ["andydwumah@gmail.com"],
+        message: {
+          subject: "Inance Contact Form",
+          html:
+            `<p><strong>Name:</strong> ${name}</p>` +
+            `<p><strong>Phone Number:</strong> ${phoneNumber}</p>` +
+            `<p><strong>Email:</strong> ${email}</p>` +
+            `<p><strong>Message:</strong> ${message}</p>`,
+        },
+      });
+      alert("Your message has been sent successfully!")
+    } catch (e) {
+      console.error("Error sending email: ", e)
+      alert("An error occurred while sending the message.")
+    }
+    // Reset fields
     setName("")
     setPhoneNumber("")
     setEmail("")
