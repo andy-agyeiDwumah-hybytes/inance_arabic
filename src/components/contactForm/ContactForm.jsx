@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 // Firebase
 import { firestore } from "../../firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
 
 export default function ContactForm({ styles, t, i18n }) {
   const formRef = useRef()
@@ -21,8 +21,16 @@ export default function ContactForm({ styles, t, i18n }) {
     const email = formData.get("email")
     const message = formData.get("message")
 
-    // Send email to mail collection (will create if it does not exist)
     try {
+      // Create new user in 'users' collection. Creates or overrides
+      await setDoc(doc(firestore, "users", email), {
+        email: email,
+        name: name,
+        phoneNumber: phoneNumber,
+        serverTimestamp: serverTimestamp()
+      })
+
+      // Send email to mail collection (will create if it does not exist)
       await addDoc(collection(firestore, "mail"), {
         to: ["andydwumah@gmail.com"],
         message: {
