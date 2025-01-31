@@ -1,8 +1,11 @@
 // React
-import { useRef, useState } from "react";
+import { useRef, useState } from "react"
 // Firebase
-import { firestore } from "../../firebase";
-import { addDoc, collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { firestore } from "../../firebase"
+import { doc, getDoc } from "firebase/firestore"
+// Utils
+import { checkDateDifference } from "../../utils/dateUtils"
+import { sendEmailToUser, createNewUser } from "../../utils/firebaseUtils"
 
 export default function ContactForm({ styles, t, i18n }) {
   const formRef = useRef()
@@ -21,31 +24,36 @@ export default function ContactForm({ styles, t, i18n }) {
     const email = formData.get("email")
     const message = formData.get("message")
 
-    try {
-      // Create new user in 'users' collection. Creates or overrides
-      await setDoc(doc(firestore, "users", email), {
-        email: email,
-        name: name,
-        phoneNumber: phoneNumber,
-        serverTimestamp: serverTimestamp()
-      })
+    // Get document reference
+    const docRef = doc(firestore, "users", email)
+    const docSnap = await getDoc(docRef)
 
-      // Send email to mail collection (will create if it does not exist)
-      await addDoc(collection(firestore, "mail"), {
-        to: ["andydwumah@gmail.com"],
-        message: {
-          subject: "Inance Contact Form",
-          html:
-            `<p><strong>Name:</strong> ${name}</p>` +
-            `<p><strong>Phone Number:</strong> ${phoneNumber}</p>` +
-            `<p><strong>Email:</strong> ${email}</p>` +
-            `<p><strong>Message:</strong> ${message}</p>`,
-        },
-      });
-      alert("Your message has been sent successfully!")
-    } catch (e) {
-      console.error("Error sending email: ", e)
-      alert("An error occurred while sending the message.")
+    if (docSnap.exists()) {
+      const serverTimestamp = new Date(
+        docSnap.data()["serverTimestamp"].toDate()
+      ).toLocaleDateString("en-US")
+      const hasBeenThreeDaysOrMoreSinceLastEmail =
+        checkDateDifference(serverTimestamp)
+      if (!hasBeenThreeDaysOrMoreSinceLastEmail) {
+        alert(
+          "You've already submitted a request. Please wait up to 3 days " +
+            "before sending another message. We appreciate your patience!"
+        )
+      } else {
+        await sendEmailToUser(firestore, name, phoneNumber, email, message)
+      }
+    } else {
+      try {
+        await createNewUser(firestore, email, name, phoneNumber)
+        await sendEmailToUser(firestore, name, phoneNumber, email, message)
+        alert(
+          "Form successfully submitted! We will get in touch with " +
+            "you within 3 days. Please wait before submitting another request."
+        )
+      } catch (e) {
+        console.error("Error sending email: ", e)
+        alert("An error occurred while sending the message.")
+      }
     }
     // Reset fields
     setName("")
@@ -119,5 +127,5 @@ export default function ContactForm({ styles, t, i18n }) {
         </button>
       </div>
     </form>
-  );
+  )
 }
