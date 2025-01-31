@@ -40,7 +40,14 @@ export default function ContactForm({ styles, t, i18n }) {
             "before sending another message. We appreciate your patience!"
         )
       } else {
-        await sendEmailToUser(firestore, name, phoneNumber, email, message)
+        try {
+          await sendEmailToUser(firestore, name, phoneNumber, email, message)
+        } catch (e) {
+          console.error("Error sending email: ", e);
+          alert(
+            "An error occurred while sending an email."
+          );
+        }
       }
     } else {
       try {
@@ -51,8 +58,8 @@ export default function ContactForm({ styles, t, i18n }) {
             "you within 3 days. Please wait before submitting another request."
         )
       } catch (e) {
-        console.error("Error sending email: ", e)
-        alert("An error occurred while sending the message.")
+        console.error("Error sending email and/or creating a new user: ", e)
+        alert("An error occurred while sending an email and/or creating a new user.")
       }
     }
     // Reset fields
