@@ -36,7 +36,7 @@ export default function ContactForm({ styles, t, i18n }) {
         checkDateDifference(serverTimestamp)
       if (!hasBeenThreeDaysOrMoreSinceLastEmail) {
         alert(
-          "You've already submitted a request. Please wait up to 3 days " +
+          "You've recently submitted a request. Please wait up to three days " +
             "before sending another message. We appreciate your patience!"
         )
       } else {
@@ -55,7 +55,7 @@ export default function ContactForm({ styles, t, i18n }) {
         await sendEmailToUser(firestore, name, phoneNumber, email, message)
         alert(
           "Form successfully submitted! We will get in touch with " +
-            "you within 3 days. Please wait before submitting another request."
+            "you within three days. Please wait three days before submitting another request."
         )
       } catch (e) {
         console.error("Error sending email and/or creating a new user: ", e)
