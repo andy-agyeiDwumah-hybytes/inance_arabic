@@ -17,7 +17,7 @@ const createNewUser = async (firestore, email, name, phoneNumber) => {
   });
 };
 
-const sendEmailToUser = async (
+const sendUserMessageToMe = async (
   firestore,
   name,
   phoneNumber,
@@ -37,4 +37,4 @@ const sendEmailToUser = async (
   });
 };
 
-export { createNewUser, sendEmailToUser };
+export { createNewUser, sendUserMessageToMe };

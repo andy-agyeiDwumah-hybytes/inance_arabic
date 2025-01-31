@@ -5,7 +5,7 @@ import { firestore } from "../../firebase"
 import { doc, getDoc } from "firebase/firestore"
 // Utils
 import { checkDateDifference } from "../../utils/dateUtils"
-import { sendEmailToUser, createNewUser } from "../../utils/firebaseUtils"
+import { sendUserMessageToMe, createNewUser } from "../../utils/firebaseUtils"
 
 export default function ContactForm({ styles, t, i18n }) {
   const formRef = useRef()
@@ -19,13 +19,19 @@ export default function ContactForm({ styles, t, i18n }) {
     e.preventDefault()
     // Get data
     const formData = new FormData(formRef.current)
-    const name = formData.get("name")
-    const phoneNumber = formData.get("phone-number")
-    const email = formData.get("email")
-    const message = formData.get("message")
+    const userName = formData.get("name").trim()
+    const userPhoneNumber = formData.get("phone-number").trim()
+    const userEmail = formData.get("email").trim()
+    const userMessage = formData.get("message").trim()
+
+    // Check if any fields are empty
+    if (!userName || !userPhoneNumber || !userEmail || !userMessage) {
+      alert("Please provide values for all fields")
+      return
+    }
 
     // Get document reference
-    const docRef = doc(firestore, "users", email)
+    const docRef = doc(firestore, "users", userEmail)
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
@@ -41,18 +47,30 @@ export default function ContactForm({ styles, t, i18n }) {
         )
       } else {
         try {
-          await sendEmailToUser(firestore, name, phoneNumber, email, message)
+          await sendUserMessageToMe(
+            firestore,
+            userName,
+            userPhoneNumber,
+            userEmail,
+            userMessage
+          )
         } catch (e) {
-          console.error("Error sending email: ", e);
+          console.error("Error sending email: ", e)
           alert(
             "An error occurred while sending an email."
-          );
+          )
         }
       }
     } else {
       try {
-        await createNewUser(firestore, email, name, phoneNumber)
-        await sendEmailToUser(firestore, name, phoneNumber, email, message)
+        await createNewUser(firestore, userEmail, userName, userPhoneNumber)
+        await sendUserMessageToMe(
+          firestore,
+          userName,
+          userPhoneNumber,
+          userEmail,
+          userMessage
+        )
         alert(
           "Form successfully submitted! We will get in touch with " +
             "you within three days. Please wait three days before submitting another request."
