@@ -28,7 +28,7 @@ export default function ContactForm({ styles, t, i18n }) {
 
     // Check if any fields are empty
     if (!userName || !userPhoneNumber || !userEmail || !userMessage) {
-      alert("Please provide values for all fields")
+      toast.error("Please provide values for all fields before submitting a message.")
       return
     }
 
@@ -45,7 +45,8 @@ export default function ContactForm({ styles, t, i18n }) {
       if (!hasBeenThreeDaysOrMoreSinceLastEmail) {
         toast.info(
           "You've recently submitted a message. Please wait up to three days " +
-            "before sending another one. We appreciate your patience!"
+          "from your last message before sending another one. We " +
+          "appreciate your patience!"
         )
       } else {
         try {
@@ -102,7 +103,7 @@ export default function ContactForm({ styles, t, i18n }) {
             name="name"
             autoComplete="name"
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
@@ -110,29 +111,30 @@ export default function ContactForm({ styles, t, i18n }) {
           {/* Override the default behaviour here depending on writing mode */}
           <input
             type="tel"
+            inputMode="tel"
+            pattern="^\+?[0-9]{7,15}$"
             dir={i18n.dir() === "ltr" ? "ltr" : "rtl"}
             placeholder={t("phonePlaceholder")}
             className={styles.input}
             aria-label="Phone Number"
             id="phone-number"
-            autoComplete="tel"
             name="phone-number"
             value={phoneNumber}
-            onChange={e => setPhoneNumber(e.target.value)}
+            onChange={(e) => setPhoneNumber(e.target.value)}
             required
           />
         </div>
         <div>
           <input
             type="email"
+            inputMode="email"
             placeholder={t("emailPlaceholder")}
             className={styles.input}
             aria-label="Email"
             id="email"
-            autoComplete="email"
             name="email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -145,7 +147,7 @@ export default function ContactForm({ styles, t, i18n }) {
             minLength={100}
             aria-label="message"
             value={message}
-            onChange={e => setMessage(e.target.value)}
+            onChange={(e) => setMessage(e.target.value)}
             required
           ></textarea>
         </div>
