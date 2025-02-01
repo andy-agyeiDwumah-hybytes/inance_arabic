@@ -1,3 +1,6 @@
+// Constants
+import { MESSAGECOOLDOWN } from "../constants/Constants";
+
 export const checkDateDifference = serverTimestamp => {
   // Convert to string. Must be in 'en-US'
   const todayDateAsStrFormatted = new Date().toLocaleDateString("en-US");
@@ -11,7 +14,7 @@ export const checkDateDifference = serverTimestamp => {
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
   // console.log(diffDays);
 
-  if (diffDays <= 3) return false;
-  // If difference is three days or more, return true
+  if (diffDays <= MESSAGECOOLDOWN) return false;
+  // If difference is more than the message cooldown, return true
   return true;
 };
