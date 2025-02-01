@@ -6,6 +6,11 @@ import {
   addDoc,
   collection,
 } from "firebase/firestore";
+import { firestore } from "../firebase";
+// Utils
+import { checkDateDifference } from "./dateUtils";
+// React toastify
+import { toast } from "react-toastify";
 
 const createNewUser = async (firestore, email, name, phoneNumber) => {
   await setDoc(doc(firestore, "users", email), {
@@ -37,4 +42,55 @@ const sendUserMessageToMe = async (
   });
 };
 
-export { createNewUser, sendUserMessageToMe };
+const manageSendMessage = async (
+  t,
+  docSnap,
+  userName,
+  userPhoneNumber,
+  userEmail,
+  userMessage
+) => {
+  // Check if user exists within database
+  if (docSnap.exists()) {
+    // Store date when message was submitted
+    const serverTimestamp = new Date(
+      docSnap.data()["serverTimestamp"].toDate()
+    ).toLocaleDateString("en-US");
+    const hasBeenThreeDaysOrMoreSinceLastEmail =
+      checkDateDifference(serverTimestamp);
+    if (!hasBeenThreeDaysOrMoreSinceLastEmail) {
+      toast.info(t("formSubmittedRecently"));
+    } else {
+      try {
+        await sendUserMessageToMe(
+          firestore,
+          userName,
+          userPhoneNumber,
+          userEmail,
+          userMessage
+        );
+      } catch (e) {
+        console.error(e);
+        toast.error(t("errorProcessingMessage"));
+      }
+    }
+    // User does not exist...
+  } else {
+    try {
+      await createNewUser(firestore, userEmail, userName, userPhoneNumber);
+      await sendUserMessageToMe(
+        firestore,
+        userName,
+        userPhoneNumber,
+        userEmail,
+        userMessage
+      );
+      toast.success(t("messageSentSuccesfully"));
+    } catch (e) {
+      console.error(e);
+      toast.error(t("errorProcessingMessage"));
+    }
+  }
+};
+
+export { createNewUser, sendUserMessageToMe, manageSendMessage };

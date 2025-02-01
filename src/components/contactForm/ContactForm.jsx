@@ -4,8 +4,7 @@ import { useRef, useState } from "react"
 import { firestore } from "../../firebase"
 import { doc, getDoc } from "firebase/firestore"
 // Utils
-import { checkDateDifference } from "../../utils/dateUtils"
-import { sendUserMessageToMe, createNewUser } from "../../utils/firebaseUtils"
+import { manageSendMessage } from "../../utils/firebaseUtils"
 // React toastify
 import { toast, ToastContainer } from "react-toastify"
 
@@ -36,44 +35,8 @@ export default function ContactForm({ styles, t, i18n }) {
     const docRef = doc(firestore, "users", userEmail)
     const docSnap = await getDoc(docRef)
 
-    if (docSnap.exists()) {
-      const serverTimestamp = new Date(
-        docSnap.data()["serverTimestamp"].toDate()
-      ).toLocaleDateString("en-US")
-      const hasBeenThreeDaysOrMoreSinceLastEmail =
-        checkDateDifference(serverTimestamp)
-      if (!hasBeenThreeDaysOrMoreSinceLastEmail) {
-        toast.info(t("formSubmittedRecently"))
-      } else {
-        try {
-          await sendUserMessageToMe(
-            firestore,
-            userName,
-            userPhoneNumber,
-            userEmail,
-            userMessage
-          )
-        } catch (e) {
-          console.error(e)
-          toast.error(t("errorProcessingMessage"))
-        }
-      }
-    } else {
-      try {
-        await createNewUser(firestore, userEmail, userName, userPhoneNumber)
-        await sendUserMessageToMe(
-          firestore,
-          userName,
-          userPhoneNumber,
-          userEmail,
-          userMessage
-        )
-        toast.success(t("messageSentSuccesfully"))
-      } catch (e) {
-        console.error(e)
-        toast.error(t("errorProcessingMessage"));
-      }
-    }
+    manageSendMessage(t, docSnap, userName, userPhoneNumber, userEmail, userMessage)
+  
     // Reset fields
     setName("")
     setPhoneNumber("")
@@ -94,7 +57,7 @@ export default function ContactForm({ styles, t, i18n }) {
             name="name"
             autoComplete="name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={e => setName(e.target.value)}
             required
           />
         </div>
@@ -111,7 +74,7 @@ export default function ContactForm({ styles, t, i18n }) {
             id="phone-number"
             name="phone-number"
             value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            onChange={e => setPhoneNumber(e.target.value)}
             required
           />
         </div>
@@ -125,7 +88,7 @@ export default function ContactForm({ styles, t, i18n }) {
             id="email"
             name="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             required
           />
         </div>
@@ -138,7 +101,7 @@ export default function ContactForm({ styles, t, i18n }) {
             minLength={100}
             aria-label="message"
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={e => setMessage(e.target.value)}
             required
           ></textarea>
         </div>
