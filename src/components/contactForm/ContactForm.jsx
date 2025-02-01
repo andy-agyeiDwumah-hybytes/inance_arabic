@@ -28,7 +28,7 @@ export default function ContactForm({ styles, t, i18n }) {
 
     // Check if any fields are empty
     if (!userName || !userPhoneNumber || !userEmail || !userMessage) {
-      toast.error("Please provide values for all fields before submitting a message.")
+      toast.error(t("emptyFields"))
       return
     }
 
@@ -43,11 +43,7 @@ export default function ContactForm({ styles, t, i18n }) {
       const hasBeenThreeDaysOrMoreSinceLastEmail =
         checkDateDifference(serverTimestamp)
       if (!hasBeenThreeDaysOrMoreSinceLastEmail) {
-        toast.info(
-          "You've recently submitted a message. Please wait up to three days " +
-          "from your last message before sending another one. We " +
-          "appreciate your patience!"
-        )
+        toast.info(t("formSubmittedRecently"))
       } else {
         try {
           await sendUserMessageToMe(
@@ -59,9 +55,7 @@ export default function ContactForm({ styles, t, i18n }) {
           )
         } catch (e) {
           console.error(e)
-          toast.error(
-            "An error occurred while processing your message. Please try again later."
-          );
+          toast.error(t("errorProcessingMessage"))
         }
       }
     } else {
@@ -74,13 +68,10 @@ export default function ContactForm({ styles, t, i18n }) {
           userEmail,
           userMessage
         )
-        toast.success(
-          "Form successfully submitted! We will get in touch with " +
-            "you within three days. Please wait three days before submitting another message."
-        )
+        toast.success(t("messageSentSuccesfully"))
       } catch (e) {
         console.error(e)
-        toast.error("An error occurred while processing your message. Please try again later.")
+        toast.error(t("errorProcessingMessage"));
       }
     }
     // Reset fields
