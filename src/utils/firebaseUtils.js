@@ -5,6 +5,7 @@ import {
   serverTimestamp,
   addDoc,
   collection,
+  updateDoc,
 } from "firebase/firestore";
 import { firestore } from "../firebase";
 // Utils
@@ -12,13 +13,14 @@ import { checkDateDifference } from "./dateUtils";
 // React toastify
 import { toast } from "react-toastify";
 
-const createNewUser = async (firestore, email, name, phoneNumber) => {
+const createNewUser = async (firestore, email, name, phoneNumber, message) => {
   await setDoc(doc(firestore, "users", email), {
     email: email,
     name: name,
     phoneNumber: phoneNumber,
+    message: message,
     // Tracks when the server receives an update
-    serverTimestamp: serverTimestamp(),
+    timestamp: serverTimestamp(),
   });
 };
 
@@ -42,9 +44,18 @@ const sendUserMessageToMe = async (
   });
 };
 
+const updateUserInfo = async (docRef, userMessage) => {
+  // Update last time a user sent a message and store latest message
+  await updateDoc(docRef, {
+    timestamp: serverTimestamp(),
+    message: userMessage,
+  });
+};
+
 const manageSendMessage = async (
   t,
   docSnap,
+  docRef,
   userName,
   userPhoneNumber,
   userEmail,
@@ -54,7 +65,7 @@ const manageSendMessage = async (
   if (docSnap.exists()) {
     // Store date when message was submitted
     const serverTimestamp = new Date(
-      docSnap.data()["serverTimestamp"].toDate()
+      docSnap.data()["timestamp"].toDate()
     ).toLocaleDateString("en-US");
     const hasBeenThreeDaysOrMoreSinceLastEmail =
       checkDateDifference(serverTimestamp);
@@ -62,6 +73,7 @@ const manageSendMessage = async (
       toast.info(t("formSubmittedRecently"));
     } else {
       try {
+        await updateUserInfo(docRef, userMessage);
         await sendUserMessageToMe(
           firestore,
           userName,
@@ -69,6 +81,7 @@ const manageSendMessage = async (
           userEmail,
           userMessage
         );
+        toast.success(t("messageSentSuccesfully"));
       } catch (e) {
         console.error(e);
         toast.error(t("errorProcessingMessage"));
@@ -77,7 +90,13 @@ const manageSendMessage = async (
     // User does not exist...
   } else {
     try {
-      await createNewUser(firestore, userEmail, userName, userPhoneNumber);
+      await createNewUser(
+        firestore,
+        userEmail,
+        userName,
+        userPhoneNumber,
+        userMessage
+      );
       await sendUserMessageToMe(
         firestore,
         userName,
