@@ -12,5 +12,7 @@
     "phonePatternMessage": "Veuillez entrer un numéro de téléphone valide. Il doit être au format: (+)xxxxxxxxxxxx, où le plus est facultatif.",
     "fieldMissing": "Merci de remplir ce champ",
     "emailPatternMessage": "Veuillez inclure un « @ » dans l'adresse e-mail",
-    "textAreaMessage": "Veuillez allonger ce texte à {{minlength}} caractères ou plus (vous utilisez actuellement {{characters}})"
+    "textAreaMessage": "Veuillez allonger ce texte à {{minlength}} caractères ou plus (vous utilisez actuellement {{characters}})",
+    "ogTitle": "Contactez-nous",
+    "ogDescription": "Vous avez des questions ou besoin d'aide ? Contactez Inance - nous sommes là pour vous aider et nous sommes impatients de vous entendre."
 }
