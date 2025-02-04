@@ -66,11 +66,15 @@ const manageSendMessage = async (
     // Get date of last message submitted
     const serverTimestamp = new Date(
       docSnap.data()["timestamp"].toDate()
-    ).toLocaleDateString("en-US");
+    ).toLocaleDateString("en-GB");
     const hasBeenThreeDaysOrMoreSinceLastEmail =
       checkDateDifference(serverTimestamp);
     if (!hasBeenThreeDaysOrMoreSinceLastEmail) {
-      toast.info(t("formSubmittedRecently"));
+      toast.info(t("formSubmittedRecently", {
+        dateOfLastMessage: serverTimestamp,
+        // Toggle escaping off as values get escaped by default to mitigate XSS attacks
+        interpolation: { escapeValue: false}
+      }));
     } else {
       try {
         await updateUserInfo(docRef, userMessage);

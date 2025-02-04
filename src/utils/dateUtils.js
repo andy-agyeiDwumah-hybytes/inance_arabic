@@ -2,8 +2,8 @@
 import { MESSAGECOOLDOWN } from "../constants/Constants";
 
 export const checkDateDifference = serverTimestamp => {
-  // Convert to string. Must be in 'en-US'
-  const todayDateAsStrFormatted = new Date().toLocaleDateString("en-US");
+  // Convert to string
+  const todayDateAsStrFormatted = new Date().toLocaleDateString("en-GB");
   // Convert to dates
   const todayDateAsDateFormatted = new Date(todayDateAsStrFormatted);
   const serverTimestampAsDateFormatted = new Date(serverTimestamp);
