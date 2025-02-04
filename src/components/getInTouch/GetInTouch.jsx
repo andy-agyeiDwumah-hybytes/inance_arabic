@@ -15,7 +15,7 @@ import {
   faMapMarker,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons"
-// react-i18next
+// i18
 import { useTranslation } from "react-i18next"
 // React
 import { useContext } from "react"

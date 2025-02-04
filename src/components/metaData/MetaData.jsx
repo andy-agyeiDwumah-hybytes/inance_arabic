@@ -1,10 +1,10 @@
-// Constants
-import { LOCALHOSTURL } from "../../constants/Constants"
 // Languages
 import { languages } from "../../languages/languageCodes"
 // React
 import { Link, Meta } from "react-head"
 import { Helmet } from "react-helmet-async"
+
+const urlOrigin = window.location.origin
 
 export default function MetaData({
   pagePath,
@@ -12,10 +12,12 @@ export default function MetaData({
   ogTitle,
   ogDescription,
   langCode,
+  imgUrl
 }) {
   // There is no extension for the home page but other pages do (e.g., en/about, en/services)
   return (
     <>
+      {/* Open Graph Protocol */}
       {/* Use 'react-helmet-async' as 'react-head' overwrites meta tags  */}
       <Helmet>
         {/* Only show alternate locales */}
@@ -31,11 +33,11 @@ export default function MetaData({
             )
           })}
       </Helmet>
-      {/* Open Graph Protocol */}
       <Meta property="og:title" content={ogTitle} />
       <Meta property="og:type" content="website" />
-      {/* <Meta property="og:image" content="" /> */}
-      <Meta property="og:url" content={`${LOCALHOSTURL}${pagePath}`} />
+      {/* Must be absolute image path */}
+      <Meta property="og:image" content={`${urlOrigin}/images${imgUrl}`} />
+      <Meta property="og:url" content={`${urlOrigin}${pagePath}`} />
       <Meta name="description" content={ogDescription} />
       <Meta property="og:description" content={ogDescription} />
       <Meta property="og:determiner" content="the" />
@@ -53,7 +55,7 @@ export default function MetaData({
           )
         })}
       {/* Canonical tag */}
-      <Link rel="canonical" href={`${LOCALHOSTURL}${pagePath}`} />
+      <Link rel="canonical" href={`${urlOrigin}${pagePath}`} />
       {/* Alternate canonical tags */}
       {languages.map(lang => {
         return (
@@ -63,8 +65,8 @@ export default function MetaData({
             hrefLang={lang.languageCode}
             href={
               extension
-                ? `${LOCALHOSTURL}/${lang.languageCode}/${extension}`
-                : `${LOCALHOSTURL}/${lang.languageCode}`
+                ? `${urlOrigin}/${lang.languageCode}/${extension}`
+                : `${urlOrigin}/${lang.languageCode}`
             }
           ></Link>
         )

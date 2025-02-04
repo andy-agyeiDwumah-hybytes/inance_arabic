@@ -56,6 +56,7 @@ export default function AboutPage() {
             ogTitle={t("ogTitle")}
             ogDescription={t("ogDescription")}
             langCode={languageCode}
+            imgUrl={"/about.jpg"}
           />
           <div className="hero_area">
             <Header />
@@ -85,5 +86,5 @@ export default function AboutPage() {
         />
       )}
     </>
-  );
+  )
 }

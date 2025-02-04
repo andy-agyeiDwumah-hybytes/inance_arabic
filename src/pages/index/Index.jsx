@@ -63,7 +63,9 @@ export default function Index() {
             pagePath={currentPage}
             ogTitle={t("ogTitle")}
             ogDescription={t("ogDescription")}
-            langCode={languageCode}/>
+            langCode={languageCode}
+            imgUrl={"/home.jpg"}
+          />
           <div className="hero_area">
             <Header />
           </div>

@@ -5,8 +5,6 @@ export const ENGLISHLANGUAGEOPTIONS = {
   textDirection: "ltr",
 };
 
-export const LOCALHOSTURL = "http://localhost:5173";
-
 // The number of days a user must wait before sending another message using the contact form
 // (see dateUtils.jsx)
 export const MESSAGECOOLDOWN = 3;

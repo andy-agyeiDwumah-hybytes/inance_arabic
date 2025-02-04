@@ -45,7 +45,9 @@ export default function ServicesPage() {
             extension="services"
             ogTitle={t("ogTitle")}
             ogDescription={t("ogDescription")}
-            langCode={languageCode}/>
+            langCode={languageCode}
+            imgUrl={"/services.jpg"}
+          />
           <div className="hero_area">
             <Header />
           </div>

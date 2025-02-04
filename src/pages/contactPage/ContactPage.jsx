@@ -44,7 +44,9 @@ export default function ContactPage() {
             extension="contact"
             ogTitle={t("ogTitle")}
             ogDescription={t("ogDescription")}
-            langCode={i18n.language} />
+            langCode={i18n.language}
+            imgUrl={"/contact.jpg"}
+          />
           <div className="hero_area">
             <Header />
           </div>
