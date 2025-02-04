@@ -63,7 +63,7 @@ const manageSendMessage = async (
 ) => {
   // Check if user exists within database
   if (docSnap.exists()) {
-    // Store date when message was submitted
+    // Get date of last message submitted
     const serverTimestamp = new Date(
       docSnap.data()["timestamp"].toDate()
     ).toLocaleDateString("en-US");

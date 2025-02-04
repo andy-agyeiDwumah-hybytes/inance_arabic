@@ -9,7 +9,7 @@ import GetInTouch from "../../components/getInTouch/GetInTouch"
 import Footer from "../../components/footer/Footer"
 // Context
 import { LanguageContext } from "../../context/languageContext"
-// i18
+// react-i18next
 import { useTranslation } from "react-i18next"
 // Hooks
 import useLanguageChange from "../../hooks/useLanguageChange"

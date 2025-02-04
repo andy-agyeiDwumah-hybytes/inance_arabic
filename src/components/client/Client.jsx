@@ -7,7 +7,7 @@ import clientTwoImg from "../../assets/client-2.jpg"
 import styles from "./Client.module.css"
 // Owl Carousel
 import ReactOwlCarousel from "react-owl-carousel"
-// i18
+// react-i18next
 import { useTranslation } from "react-i18next"
 
 export default function Client() {

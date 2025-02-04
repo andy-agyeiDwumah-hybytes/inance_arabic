@@ -7,7 +7,7 @@ import CanonicalTags from "../../components/canonicalTags/CanonicalTags"
 // React
 import { useLocation, useParams } from "react-router"
 import { useEffect } from "react"
-// i18
+// react-i18next
 import { useTranslation } from "react-i18next"
 // Hooks
 import useLanguageChange from "../../hooks/useLanguageChange"
@@ -25,7 +25,7 @@ export default function ServicesPage() {
     if (pathname === currentPage) {
       // Pass GA4 measurement ID, allows library to send data to my GA account
       ReactGA.initialize(import.meta.env.VITE_GOOGLE_MEASUREMENT_ID)
-      // sends a 'pageview' event (page load or user navigation)
+      // Sends a 'pageview' event (page load or user navigation)
       ReactGA.send({
         hitType: "pageview",
         page: currentPage,

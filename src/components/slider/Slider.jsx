@@ -4,7 +4,7 @@ import { Link } from "react-router"
 import sliderImg from "../../assets/slider-img.png"
 // Styles
 import styles from "./Slider.module.css"
-// i18
+// react-i18next
 import { useTranslation } from "react-i18next"
 
 export default function Slider() {

@@ -7,7 +7,7 @@ import { languages } from "../languages/languageCodes";
 import { LOCALSTORAGEKEY } from "../constants/Constants";
 // Context
 import { LanguageContext } from "../context/languageContext";
-// i18
+// react-i18next
 import { useTranslation } from "react-i18next";
 
 export default function useLanguageChange(langCode, pathname, currentPage) {

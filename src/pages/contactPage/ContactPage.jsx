@@ -4,7 +4,7 @@ import Footer from "../../components/footer/Footer"
 import Header from "../../components/header/Header"
 import CanonicalTags from "../../components/canonicalTags/CanonicalTags"
 import Contact from "../../components/contact/Contact"
-// i18
+// react-i18next
 import { useTranslation } from "react-i18next"
 // React
 import { useLocation, useParams } from "react-router"
@@ -26,7 +26,7 @@ export default function ContactPage() {
     if (pathname === currentPage) {
       // Pass GA4 measurement ID, allows library to send data to my GA account
       ReactGA.initialize(import.meta.env.VITE_GOOGLE_MEASUREMENT_ID)
-      // sends a 'pageview' event (page load or user navigation)
+      // Sends a 'pageview' event (page load or user navigation)
       ReactGA.send({
         hitType: "pageview",
         page: currentPage,

@@ -1,7 +1,7 @@
 // React
 import { Link, NavLink, useLocation } from "react-router"
 import { useContext } from "react"
-// i18
+// react-i18next
 import { useTranslation } from "react-i18next"
 // Context
 import { LanguageContext } from "../../context/languageContext"

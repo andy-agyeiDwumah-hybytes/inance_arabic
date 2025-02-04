@@ -1,6 +1,7 @@
 // React
 import { Suspense, useEffect, useState, lazy } from "react"
 import { useLocation, useParams } from "react-router"
+// react-i18next
 import { useTranslation } from "react-i18next"
 // Components
 import Client from "../../components/client/Client"
@@ -44,7 +45,7 @@ export default function Index() {
   useEffect(() => {
     // Pass GA4 measurement ID, allows library to send data to my GA account
     ReactGA.initialize(import.meta.env.VITE_GOOGLE_MEASUREMENT_ID)
-    // sends a 'pageview' event (page load or user navigation)
+    // Sends a 'pageview' event (page load or user navigation)
     ReactGA.send({
       hitType: "pageview",
       page: currentPage,

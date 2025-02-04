@@ -1,7 +1,7 @@
 // React
 import { useLocation, useParams } from "react-router"
 import { useEffect, useState } from "react"
-// i18
+// react-i18next
 import { useTranslation } from "react-i18next"
 // Hooks
 import useLanguageChange from "../../hooks/useLanguageChange"
@@ -15,16 +15,16 @@ import About from "../../components/about/About"
 import ReactGA from "react-ga4"
 
 export default function AboutPage() {
-  // Classname differs depending on the path
   const { pathname } = useLocation()
   const [layoutClassName, setLayoutClassName] = useState("")
   const { t, i18n } = useTranslation("about")
   let { langCode } = useParams()
   let languageCode = i18n.language
   let currentPage = `/${languageCode}/about`
-
+  
   useLanguageChange(langCode, pathname, `/${langCode}/about`)
-
+  
+  // Classname differs depending on the path
   useEffect(() => {
     if (pathname === `/${languageCode}`) {
       setLayoutClassName("layout_padding-bottom")
@@ -37,7 +37,7 @@ export default function AboutPage() {
     if (pathname === currentPage) {
       // Pass GA4 measurement ID, allows library to send data to my GA account
       ReactGA.initialize(import.meta.env.VITE_GOOGLE_MEASUREMENT_ID)
-      // sends a 'pageview' event (page load or user navigation)
+      // Sends a 'pageview' event (page load or user navigation)
       ReactGA.send({
         hitType: "pageview",
         page: currentPage,

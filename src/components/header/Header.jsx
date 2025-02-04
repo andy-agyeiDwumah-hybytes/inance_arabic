@@ -9,20 +9,19 @@ import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons"
 // Components
 import Navigation from "../navigation/Navigation"
 import Slider from "../slider/Slider"
-// i18
+// react-i18next
 import { useTranslation } from "react-i18next"
 // Context
 import { LanguageContext } from "../../context/languageContext"
 
 export default function Header() {
   const { pathname } = useLocation()
-  // Only show Slider component if current page is the index (home page)
-  // True by default
   const [currentPageIsIndex, setCurrentPageIsIndex] = useState(true)
   const { t, i18n } = useTranslation("header")
   const { handleLinkClick } = useContext(LanguageContext)
   let homePage = `/${i18n.language}`
-
+  
+  // Only show Slider component if current page is the index (home page)
   useEffect(() => {
     if (pathname === homePage) {
       setCurrentPageIsIndex(true)

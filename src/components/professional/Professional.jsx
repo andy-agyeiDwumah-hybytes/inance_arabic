@@ -4,7 +4,7 @@ import styles from "./Professional.module.css"
 import professionalImg from "../../assets/professional-img.png"
 // React
 import { Link } from "react-router"
-// i18
+// react-i18next
 import { useTranslation } from "react-i18next"
 
 export default function Professional() {

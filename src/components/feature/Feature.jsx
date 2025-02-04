@@ -13,7 +13,7 @@ import {
 import Path from "../path/Path"
 // Styles
 import styles from "./Feature.module.css"
-// i18
+// react-i18next
 import { useTranslation } from "react-i18next"
 
 export default function Feature() {
