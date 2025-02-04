@@ -2,7 +2,7 @@
 import GetInTouch from "../../components/getInTouch/GetInTouch"
 import Footer from "../../components/footer/Footer"
 import Header from "../../components/header/Header"
-import CanonicalTags from "../../components/canonicalTags/CanonicalTags"
+import MetaData from "../../components/metaData/MetaData";
 import Contact from "../../components/contact/Contact"
 // react-i18next
 import { useTranslation } from "react-i18next"
@@ -39,7 +39,7 @@ export default function ContactPage() {
     <>
       {pathname === currentPage ? (
         <>
-          <CanonicalTags pagePath={currentPage} extension="contact" />
+          <MetaData pagePath={currentPage} extension="contact" />
           <div className="hero_area">
             <Header />
           </div>

@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next"
 import useLanguageChange from "../../hooks/useLanguageChange"
 // Components
 import Header from "../../components/header/Header"
-import CanonicalTags from "../../components/canonicalTags/CanonicalTags"
+import MetaData from "../../components/metaData/MetaData"
 import GetInTouch from "../../components/getInTouch/GetInTouch"
 import Footer from "../../components/footer/Footer"
 import About from "../../components/about/About"
@@ -50,7 +50,7 @@ export default function AboutPage() {
     <>
       {pathname === currentPage ? (
         <>
-          <CanonicalTags pagePath={currentPage} extension="about" />
+          <MetaData pagePath={currentPage} extension="about" />
           <div className="hero_area">
             <Header />
           </div>
@@ -79,5 +79,5 @@ export default function AboutPage() {
         />
       )}
     </>
-  )
+  );
 }

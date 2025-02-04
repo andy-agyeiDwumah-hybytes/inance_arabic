@@ -10,7 +10,7 @@ import Professional from "../../components/professional/Professional"
 import GetInTouch from "../../components/getInTouch/GetInTouch"
 import Footer from "../../components/footer/Footer"
 import Header from "../../components/header/Header"
-import CanonicalTags from "../../components/canonicalTags/CanonicalTags"
+import MetaData from "../../components/metaData/MetaData"
 // Lazy load Contact component (Fixes google map bug)
 const ContactPage = lazy(() => import("../contactPage/ContactPage"))
 // Hooks
@@ -59,7 +59,7 @@ export default function Index() {
     <>
       {pathname === currentPage && (
         <>
-          <CanonicalTags pagePath={currentPage} />
+          <MetaData pagePath={currentPage} />
           <div className="hero_area">
             <Header />
           </div>

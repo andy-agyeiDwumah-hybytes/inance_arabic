@@ -3,7 +3,7 @@ import Services from "../../components/services/Services"
 import GetInTouch from "../../components/getInTouch/GetInTouch"
 import Footer from "../../components/footer/Footer"
 import Header from "../../components/header/Header"
-import CanonicalTags from "../../components/canonicalTags/CanonicalTags"
+import MetaData from "../../components/metaData/MetaData"
 // React
 import { useLocation, useParams } from "react-router"
 import { useEffect } from "react"
@@ -40,7 +40,7 @@ export default function ServicesPage() {
     <>
       {pathname === currentPage ? (
         <>
-          <CanonicalTags pagePath={currentPage} extension="services" />
+          <MetaData pagePath={currentPage} extension="services" />
           <div className="hero_area">
             <Header />
           </div>
