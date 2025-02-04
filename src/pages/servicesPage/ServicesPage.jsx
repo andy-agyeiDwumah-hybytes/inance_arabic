@@ -40,7 +40,12 @@ export default function ServicesPage() {
     <>
       {pathname === currentPage ? (
         <>
-          <MetaData pagePath={currentPage} extension="services" />
+          <MetaData
+            pagePath={currentPage}
+            extension="services"
+            ogTitle={t("ogTitle")}
+            ogDescription={t("ogDescription")}
+            langCode={languageCode}/>
           <div className="hero_area">
             <Header />
           </div>

@@ -31,7 +31,7 @@ export default function Index() {
   // Tracks whether the Contact component has already been loaded
   // Remain in DOM after it has loaded
   const [hasContactLoaded, setHasContactLoaded] = useState(false)
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation("hero")
   let languageCode = i18n.language
   let currentPage = `/${languageCode}`
 
@@ -59,7 +59,11 @@ export default function Index() {
     <>
       {pathname === currentPage && (
         <>
-          <MetaData pagePath={currentPage} />
+          <MetaData
+            pagePath={currentPage}
+            ogTitle={t("ogTitle")}
+            ogDescription={t("ogDescription")}
+            langCode={languageCode}/>
           <div className="hero_area">
             <Header />
           </div>

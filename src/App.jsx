@@ -7,6 +7,7 @@ import {
 } from "react-router"
 import { useCallback, useState } from "react"
 import { HeadProvider } from "react-head"
+import { HelmetProvider } from "react-helmet-async"
 // Pages
 import Notfound from "./pages/notfound/Notfound"
 import Index from "./pages/index"
@@ -94,10 +95,12 @@ export default function App() {
   }
 
   return (
-    <HeadProvider>
-      <LanguageContext.Provider value={appContext}>
-        <RouterProvider router={router} />
-      </LanguageContext.Provider>
-    </HeadProvider>
+    <HelmetProvider>
+      <HeadProvider>
+        <LanguageContext.Provider value={appContext}>
+          <RouterProvider router={router} />
+        </LanguageContext.Provider>
+      </HeadProvider>
+    </HelmetProvider>
   );
 }

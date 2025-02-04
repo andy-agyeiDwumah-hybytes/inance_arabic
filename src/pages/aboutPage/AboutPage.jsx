@@ -50,7 +50,13 @@ export default function AboutPage() {
     <>
       {pathname === currentPage ? (
         <>
-          <MetaData pagePath={currentPage} extension="about" />
+          <MetaData
+            pagePath={currentPage}
+            extension="about"
+            ogTitle={t("ogTitle")}
+            ogDescription={t("ogDescription")}
+            langCode={languageCode}
+          />
           <div className="hero_area">
             <Header />
           </div>

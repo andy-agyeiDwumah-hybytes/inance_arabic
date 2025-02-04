@@ -39,7 +39,12 @@ export default function ContactPage() {
     <>
       {pathname === currentPage ? (
         <>
-          <MetaData pagePath={currentPage} extension="contact" />
+          <MetaData
+            pagePath={currentPage}
+            extension="contact"
+            ogTitle={t("ogTitle")}
+            ogDescription={t("ogDescription")}
+            langCode={i18n.language} />
           <div className="hero_area">
             <Header />
           </div>
