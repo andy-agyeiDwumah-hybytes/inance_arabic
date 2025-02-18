@@ -1,16 +1,16 @@
-# Inance Website Clone
+# Inance Website Clone 💥
 
 This is a React-based clone of the Inance website, built for practise purposes. It
 features multi-language support (Currently supporting English, French, and Arabic) and
 basic pages like Home, About Us, Services, and Contact Us.
 
-## Features
+## Features ✨
 
 * **Multi-language support**: Switch between English, French, and Arabic
 * **Contact Form**: Submissions are saved to Firestore and trigger an email notification
 * **Google Analytics**: Monitors website performance (currently on localhost)
 
-## Getting Started
+## Getting Started ✅
 
 Follow these steps to get the project up and running on your local machine.
 
@@ -21,13 +21,13 @@ Follow these steps to get the project up and running on your local machine.
 
 ### 2. Create a Firebase Project
 
-* Create a new project with [Firebase]("https://console.firebase.google.com/?_gl=1*171i0zp*_up*MQ..*_ga*MTcxMzk4Mjk4Ny4xNzM5MDI4NTgw*_ga_CW55HF8NVT*MTczOTAyODU4MC4xLjAuMTczOTAyODU4MC4wLjAuMA..")
+* Create a new project with [Firebase](https://console.firebase.google.com/?_gl=1*171i0zp*_up*MQ..*_ga*MTcxMzk4Mjk4Ny4xNzM5MDI4NTgw*_ga_CW55HF8NVT*MTczOTAyODU4MC4xLjAuMTczOTAyODU4MC4wLjAuMA..)
 * Set up a Cloud Firestore database and add a new Web App to you Firebase project to obtain your Firebase configuration
 
 ### 3. Set Up Google Analytics
 
 1. Create a Google Analytics Account: <br>
-* If you haven't already, sign up for [Google Analytics]("https://marketingplatform.google.com/about/analytics/")
+* If you haven't already, sign up for [Google Analytics](https://marketingplatform.google.com/about/analytics/)
 
 2. Create a New Property: <br>
 * Create a new Property 
@@ -62,7 +62,7 @@ VITE_CONTACT_EMAIL='your-email@example.com'
 To allow your project to work correctly during development, update your Firestore rules
  to allow access to the required collections.
 
-**Note: These rules are simplified for development purposes. In a production environment,
+**NOTE: These rules are simplified for development purposes. In a production environment,
  consider adding proper authentication and validation to secure your data.**
 
 ```
