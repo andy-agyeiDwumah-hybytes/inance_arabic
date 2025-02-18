@@ -9,7 +9,7 @@ export const languages = [
     },
   },
   {
-    language: "arabic",
+    language: "عربي",
     languageCode: "ar",
     writingMode: "rtl",
     locale: {
@@ -18,7 +18,7 @@ export const languages = [
     },
   },
   {
-    language: "french",
+    language: "Français",
     languageCode: "fr",
     writingMode: "ltr",
     locale: {

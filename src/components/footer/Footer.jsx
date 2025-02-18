@@ -74,11 +74,12 @@ export default function Footer() {
             >
               {/* Show all languages supported by website */}
               {languages.map(val => {
+                const languageToUpperCase = val.language.charAt(0).toLocaleUpperCase() + val.language.slice(1)
                 return (
                   <option key={val.language} value={val.languageCode}>
-                    {val.languageCode}
+                    {languageToUpperCase}
                   </option>
-                )
+                );
               })}
             </select>
           </div>
