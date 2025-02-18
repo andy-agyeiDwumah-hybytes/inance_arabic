@@ -12,6 +12,8 @@ import { firestore } from "../firebase";
 import { checkDateDifference } from "./dateUtils";
 // React toastify
 import { toast } from "react-toastify";
+// Env
+const contactEmail = import.meta.env.VITE_CONTACT_EMAIL;
 
 const createNewUser = async (firestore, email, name, phoneNumber, message) => {
   await setDoc(doc(firestore, "users", email), {
@@ -32,7 +34,7 @@ const sendUserMessageToMe = async (
   message
 ) => {
   await addDoc(collection(firestore, "mail"), {
-    to: ["andydwumah@gmail.com"],
+    to: [contactEmail],
     message: {
       subject: "Inance Contact Form",
       html:
