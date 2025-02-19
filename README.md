@@ -2,7 +2,7 @@
 
 This is a React-based clone of the Inance website, built for practise purposes. It
 features multi-language support (Currently supporting English, French, and Arabic) and
-basic pages like Home, About Us, Services, and Contact Us.
+basic pages like Home, About, Services, and Contact Us.
 
 ## Features ✨
 
@@ -21,8 +21,12 @@ Follow these steps to get the project up and running on your local machine.
 
 ### 2. Create a Firebase Project
 
-* Create a new project with [Firebase](https://console.firebase.google.com/?_gl=1*171i0zp*_up*MQ..*_ga*MTcxMzk4Mjk4Ny4xNzM5MDI4NTgw*_ga_CW55HF8NVT*MTczOTAyODU4MC4xLjAuMTczOTAyODU4MC4wLjAuMA..)
-* Set up a Cloud Firestore database and add a new Web App to you Firebase project to obtain your Firebase configuration
+* Create a new project with [Firebase](https://firebase.google.com/)
+* Set up a Firestore Database for your project
+* Add a new Web App to you Firebase project to obtain your Firebase configuration details
+* Download the **Trigger Email from Firestore** extension from Firebase
+* Follow the tutorial on [Sending emails using Firestore and Firebase Extensions](https://invertase.io/blog/send-email-extension). Be sure to read up to **Sending emails using Firebase Functions triggers** section for setup instructions
+* Also select **mail** as the Firestore collection where you would like to process emails from
 
 ### 3. Set Up Google Analytics
 
